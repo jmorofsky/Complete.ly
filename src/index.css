@@ -1,13 +1,125 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #FAFAFA;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app-container {
+  display: flex;
+}
+
+/* -- menu -- */
+
+.menu-container {
+  flex-basis: 20%;
+  max-width: 300px;
+  background-color: #F4F4F4;
+  margin: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+  height: calc(100vh - 40px);
+}
+
+.menu-title {
+  color: #555555;
+}
+
+.menu-container>a {
+  text-decoration: none;
+  color: #7B7B7B;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.25s;
+  margin: 1px 0;
+}
+
+.menu-container>a:hover {
+  background-color: #EBEBEB;
+}
+
+#no-hover:hover {
+  background-color: #F4F4F4;
+}
+
+.menu-container>p {
+  color: #6E6E6E;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* -- */
+
+.todo-list {
+  background-color: white;
+  margin: auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #efefef;
+  box-shadow:
+    /* The top layer shadow */
+    0 1px 1px rgba(0, 0, 0, 0.15),
+    /* The second layer */
+    0 10px 0 -5px #eee,
+    /* The second layer shadow */
+    0 10px 1px -4px rgba(0, 0, 0, 0.15),
+    /* The third layer */
+    0 20px 0 -10px #eee,
+    /* The third layer shadow */
+    0 20px 1px -9px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 30px 20px 0;
+  width: 70%;
+  border-bottom: 1px solid #cecece;
+  font-family: Roboto, sans-serif;
+  font-weight: 100;
+  font-size: 15px;
+  color: #333333;
+}
+
+input[type=checkbox] {
+  margin-right: 10px;
+  font-size: 30px;
+}
+
+input[type=checkbox]:focus {
+  outline: 0;
+}
+
+/* -- calendar -- */
+
+
+/* -- error page -- */
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  color: #333333;
+}
+
+.errorIcon {
+  width: 30%;
+  height: 30%;
+  margin: 25% auto 0;
+}
+
+.errorContainer>p {
+  margin: 3px;
+  font-size: 18px;
 }
