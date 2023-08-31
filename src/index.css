@@ -3,11 +3,17 @@ body {
   font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FAFAFA;
+}
+
+.background {
+  background-color: #C7D2C3;
+  padding: 25px;
 }
 
 .app-container {
   display: flex;
+  background-color: #FAFAFA;
+  border-radius: 30px;
 }
 
 /* -- menu -- */
@@ -15,13 +21,14 @@ body {
 .menu-container {
   flex-basis: 20%;
   max-width: 300px;
+  min-width: 160px;
   background-color: #F4F4F4;
   margin: 20px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   padding: 0 15px;
-  height: calc(100vh - 40px);
+  height: calc(100vh - 90px);
 }
 
 .menu-title {
@@ -53,50 +60,79 @@ body {
   font-weight: 700;
 }
 
-/* -- */
+/* -- main page -- */
 
-.todo-list {
-  background-color: white;
-  margin: auto;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #efefef;
-  box-shadow:
-    /* The top layer shadow */
-    0 1px 1px rgba(0, 0, 0, 0.15),
-    /* The second layer */
-    0 10px 0 -5px #eee,
-    /* The second layer shadow */
-    0 10px 1px -4px rgba(0, 0, 0, 0.15),
-    /* The third layer */
-    0 20px 0 -10px #eee,
-    /* The third layer shadow */
-    0 20px 1px -9px rgba(0, 0, 0, 0.15);
-  padding: 30px;
+#main > h1 {
+  font-size: 47px;
+}
+
+h1 > span {
+  border: 2px solid #EBEBEB;
+  padding: 5px 17px;
+  border-radius: 10px;
+  font-weight: 400;
 }
 
 .todo-item {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 30px 20px 0;
-  width: 70%;
-  border-bottom: 1px solid #cecece;
-  font-family: Roboto, sans-serif;
-  font-weight: 100;
-  font-size: 15px;
-  color: #333333;
+  color: #7B7B7B;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 7px 25px;
 }
 
-input[type=checkbox] {
-  margin-right: 10px;
-  font-size: 30px;
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  transition: "all 0.25s";
 }
 
-input[type=checkbox]:focus {
-  outline: 0;
+.checkbox-container>input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  border: 2px solid #EBEBEB;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.checkbox-container>input:checked~.checkmark:after {
+  content: "";
+  opacity: 100%;
+}
+
+.checkbox-container .checkmark:after {
+  left: 6px;
+  top: -11px;
+  width: 8px;
+  height: 20px;
+  border: solid #C1E1C1;
+  border-width: 0 5px 5px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 /* -- calendar -- */
