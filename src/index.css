@@ -3,6 +3,7 @@ body {
   font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  user-select: none;
 }
 
 .background {
@@ -80,8 +81,12 @@ h1 > span {
   padding: 7px 25px;
 }
 
+.todo-text {
+  display: inline-block;
+}
+
 .checkbox-container {
-  display: block;
+  display: inline-block;
   position: relative;
   padding-left: 35px;
   margin-bottom: 12px;
@@ -91,6 +96,7 @@ h1 > span {
   user-select: none;
   cursor: pointer;
   transition: "all 0.25s";
+  vertical-align: 4px;
 }
 
 .checkbox-container>input {
@@ -100,7 +106,7 @@ h1 > span {
   width: 0;
 }
 
-.checkmark {
+.checkmarkCompleted {
   position: absolute;
   top: 0;
   left: 0;
@@ -111,19 +117,19 @@ h1 > span {
   cursor: pointer;
 }
 
-.checkmark:after {
+.checkmarkCompleted:after {
   content: "";
   position: absolute;
   opacity: 0;
   transition: all 0.2s;
 }
 
-.checkbox-container>input:checked~.checkmark:after {
+.checkbox-container>input:checked~.checkmarkCompleted:after {
   content: "";
   opacity: 100%;
 }
 
-.checkbox-container .checkmark:after {
+.checkbox-container .checkmarkCompleted:after {
   left: 6px;
   top: -11px;
   width: 8px;
@@ -133,6 +139,36 @@ h1 > span {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.checkmarkFailed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  border: 2px solid #EBEBEB;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkmarkFailed:after {
+  content: "X";
+  position: absolute;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.checkbox-container>input:checked~.checkmarkFailed:after {
+  content: "X";
+  opacity: 100%;
+}
+
+.checkbox-container .checkmarkFailed:after {
+  top: -11px;
+  left: -2px;
+  color: #FC9E9C;
+  font-size: 32px;
 }
 
 /* -- calendar -- */

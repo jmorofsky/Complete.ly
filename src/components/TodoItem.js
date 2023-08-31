@@ -1,9 +1,25 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Separator } from "./Separator"
 import sampleData from '../sampleData.json'
 
 export default function TodoItem(props) {
     const [completed, setCompleted] = useState(props.completed)
+    const [checked, setChecked] = useState()
+    const [checkmarkClass, setCheckmarkClass] = useState()
+
+    useEffect(() => {
+        if (completed == true) {
+            setChecked(true)
+            setCheckmarkClass("checkmarkCompleted")
+        } else if (completed == false) {
+            setChecked(true)
+            setCheckmarkClass("checkmarkFailed")
+        } else {
+            setChecked(false)
+            setCheckmarkClass("checkmarkFailed")
+        }
+    })
+
     let isLastTodo = false
     if (sampleData.todoItems.length == props.id) {
         isLastTodo = true
@@ -16,8 +32,20 @@ export default function TodoItem(props) {
     }
 
     function handleChange() {
-        setCompleted(!completed)
-        props.completed = !props.completed
+        if (completed) {
+            setCompleted(false)
+            setChecked(true)
+            setCheckmarkClass("checkmarkCompleted")
+        } else if (completed == null) {
+            setCompleted(true)
+            setChecked(false)
+        } else {
+            setCompleted(null)
+            setChecked(true)
+            setCheckmarkClass("checkmarkFailed")
+        }
+
+        props.completed = completed
 
         //update database
     }
@@ -26,10 +54,12 @@ export default function TodoItem(props) {
         return (
             <div className="todo-item" key={props.id}>
                 <label className="checkbox-container" >
-                    <div style={completed ? activeStyle : null}>{props.text} {props.tags}</div>
-                    <input type="checkbox" defaultChecked={completed} onChange={handleChange} />
-                    <span className="checkmark" />
+                    <input type="checkbox" checked={checked} onChange={handleChange} />
+                    <span className={checkmarkClass} />
                 </label>
+                <div className="todo-text" style={completed ? activeStyle : null}>
+                    {props.text} {props.tags}
+                </div>
 
                 <div>{props.lists}</div>
             </div>
@@ -39,10 +69,12 @@ export default function TodoItem(props) {
             <>
                 <div className="todo-item" key={props.id}>
                     <label className="checkbox-container" >
-                        <div style={completed ? activeStyle : null}>{props.text} {props.tags}</div>
-                        <input type="checkbox" defaultChecked={completed} onChange={handleChange} />
-                        <span className="checkmark" />
+                        <input type="checkbox" checked={checked} onChange={handleChange} />
+                        <span className={checkmarkClass} />
                     </label>
+                    <div className="todo-text" style={completed ? activeStyle : null}>
+                        {props.text} {props.tags}
+                    </div>
 
                     <div>{props.lists}</div>
                 </div>
