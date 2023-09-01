@@ -63,6 +63,10 @@ body {
 
 /* -- main page -- */
 
+.main-wrapper {
+  display: flex;
+}
+
 #main > h1 {
   font-size: 47px;
 }
@@ -72,6 +76,16 @@ h1 > span {
   padding: 5px 17px;
   border-radius: 10px;
   font-weight: 400;
+}
+
+.new-task {
+  border: 2px solid #EBEBEB;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #989898;
 }
 
 .todo-item {

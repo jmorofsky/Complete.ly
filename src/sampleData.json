@@ -1,0 +1,49 @@
+{
+    "todoItems": [
+        {
+            "id": 1,
+            "text": "buy groceries",
+            "completed": null,
+            "date": "08/30/2023",
+            "tags": ["shopping"],
+            "lists": ["personal"],
+            "parent": null
+        },
+        {
+            "id": 2,
+            "text": "complete sample json data",
+            "completed": true,
+            "date": "08/30/2023",
+            "tags": ["todo project", "backend"],
+            "lists": ["work"],
+            "parent": null
+        },
+        {
+            "id": 3,
+            "text": "learn new language",
+            "completed": null,
+            "date": "08/30/2023",
+            "tags": ["education"],
+            "lists": ["personal", "work"],
+            "parent": null
+        },
+        {
+            "id": 4,
+            "text": "i am empty",
+            "completed": false,
+            "date": "08/30/2023",
+            "tags": [],
+            "lists": [],
+            "parent": null
+        }
+    ],
+
+    "tags": [
+        {
+            "shopping": "red",
+            "todo project": "green",
+            "backend": "blue",
+            "phat ass needed": "pink"
+        }
+    ]
+}

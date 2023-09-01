@@ -4,24 +4,24 @@ import sampleData from '../sampleData.json'
 
 export default function TodoItem(props) {
     const [completed, setCompleted] = useState(props.completed)
-    const [checked, setChecked] = useState()
-    const [checkmarkClass, setCheckmarkClass] = useState()
+    const [checked, setChecked] = useState("")
+    const [checkmarkClass, setCheckmarkClass] = useState("")
 
     useEffect(() => {
-        if (completed == true) {
+        if (completed === true) {
             setChecked(true)
             setCheckmarkClass("checkmarkCompleted")
-        } else if (completed == false) {
+        } else if (completed === false) {
             setChecked(true)
             setCheckmarkClass("checkmarkFailed")
         } else {
             setChecked(false)
             setCheckmarkClass("checkmarkFailed")
         }
-    })
+    }, [completed])
 
     let isLastTodo = false
-    if (sampleData.todoItems.length == props.id) {
+    if (sampleData.todoItems.length === props.id) {
         isLastTodo = true
     }
 
@@ -50,9 +50,9 @@ export default function TodoItem(props) {
         //update database
     }
 
-    if (isLastTodo) {
-        return (
-            <div className="todo-item" key={props.id}>
+    return (
+        <div key={props.id}>
+            <div className="todo-item" >
                 <label className="checkbox-container" >
                     <input type="checkbox" checked={checked} onChange={handleChange} />
                     <span className={checkmarkClass} />
@@ -63,24 +63,8 @@ export default function TodoItem(props) {
 
                 <div>{props.lists}</div>
             </div>
-        )
-    } else {
-        return (
-            <>
-                <div className="todo-item" key={props.id}>
-                    <label className="checkbox-container" >
-                        <input type="checkbox" checked={checked} onChange={handleChange} />
-                        <span className={checkmarkClass} />
-                    </label>
-                    <div className="todo-text" style={completed ? activeStyle : null}>
-                        {props.text} {props.tags}
-                    </div>
 
-                    <div>{props.lists}</div>
-                </div>
-
-                <Separator />
-            </>
-        )
-    }
+            {isLastTodo ? null : <Separator />}
+        </div>
+    )
 }
