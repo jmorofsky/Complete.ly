@@ -64,7 +64,13 @@ body {
 /* -- main page -- */
 
 .main-wrapper {
+  width: 100%;
   display: flex;
+}
+
+#main {
+  width: calc(100% - 20px);
+  min-width: 300px;
 }
 
 #main > h1 {
@@ -80,7 +86,7 @@ h1 > span {
 
 .new-task {
   border: 2px solid #EBEBEB;
-  border-radius: 15px;
+  border-radius: 10px;
   margin-bottom: 10px;
   font-size: 18px;
   font-weight: 500;
@@ -183,6 +189,88 @@ h1 > span {
   left: -2px;
   color: #FC9E9C;
   font-size: 32px;
+}
+
+/* -- new task -- */
+
+.new-task-container {
+  flex-basis: 35%;
+  min-width: 350px;
+  background-color: #F4F4F4;
+  margin: 20px;
+  padding: 0 15px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-task-container h1 {
+  color: #555555;
+}
+
+#new-task input {
+  color: #7B7B7B;
+}
+
+#new-task input::-webkit-input-placeholder {
+  opacity: 50%;
+}
+
+#new-task>input[type=text] {
+  font-family: 'Rubik', sans-serif;
+  border: 2px solid #EBEBEB;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  background: transparent;
+  outline: none;
+  padding: 10px;
+  width: calc(100% - 25px);
+}
+
+#new-task>input[type="date"] {
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  background: transparent;
+  border: 2px solid #EBEBEB;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+#new-task>input[type="date"]:focus {
+  outline: none;
+}
+
+#new-task>input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 50%;
+}
+
+#new-task select {
+  font-family: 'Rubik', sans-serif;
+  border: 2px solid #EBEBEB;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  background: transparent;
+  outline: none;
+  padding: 6px 15px 6px 5px;
+}
+
+#new-task p {
+  display: inline;
+  margin-right: 35px;
+}
+
+#new-task option {
+  font-family: 'Rubik', sans-serif;
+  background-color: #EBEBEB;
+}
+
+.new-task-description {
+  padding: 10px 10px 100px !important;
 }
 
 /* -- calendar -- */

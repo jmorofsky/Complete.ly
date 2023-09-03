@@ -3,47 +3,58 @@
         {
             "id": 1,
             "text": "buy groceries",
+            "description": "",
             "completed": null,
             "date": "08/30/2023",
-            "tags": ["shopping"],
-            "lists": ["personal"],
-            "parent": null
+            "tags": ["Shopping"],
+            "lists": ["Personal"],
+            "subtasks": null
         },
         {
             "id": 2,
             "text": "complete sample json data",
+            "description": "",
             "completed": true,
             "date": "08/30/2023",
-            "tags": ["todo project", "backend"],
-            "lists": ["work"],
-            "parent": null
+            "tags": ["Todo Project", "Backend"],
+            "lists": ["Work"],
+            "subtasks": null
         },
         {
             "id": 3,
             "text": "learn new language",
+            "description": "",
             "completed": null,
             "date": "08/30/2023",
-            "tags": ["education"],
-            "lists": ["personal", "work"],
-            "parent": null
+            "tags": ["Education"],
+            "lists": ["Personal", "Work"],
+            "subtasks": null
         },
         {
             "id": 4,
             "text": "i am empty",
+            "description": "",
             "completed": false,
             "date": "08/30/2023",
             "tags": [],
             "lists": [],
-            "parent": null
+            "subtasks": null
         }
     ],
 
     "tags": [
         {
-            "shopping": "red",
-            "todo project": "green",
-            "backend": "blue",
-            "phat ass needed": "pink"
+            "Shopping": "#FC9E9C",
+            "Todo Project": "#C1E1C1",
+            "Backend": "#A7C7E7",
+            "Education": "#FDFD96"
+        }
+    ],
+
+    "lists": [
+        {
+            "Personal": "#FC9E9C",
+            "Work": "#C1E1C1"
         }
     ]
 }

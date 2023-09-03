@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import sampleData from '../sampleData.json'
 import TodoItem from '../components/TodoItem'
+import NewTask from '../components/NewTask'
 
 // mark as important
 // subtasks
 // tags
+// repeating tasks, daily, weekly, etc
 
 export default function Main() {
     const [todos] = useState(sampleData.todoItems)
@@ -40,9 +42,7 @@ export default function Main() {
             </div>
 
             {newTask ?
-                <div>
-                    test
-                </div>
+                <NewTask />
                 : null
             }
         </div>
