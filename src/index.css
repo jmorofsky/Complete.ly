@@ -117,6 +117,9 @@ h1 > span {
   cursor: pointer;
   transition: "all 0.25s";
   vertical-align: 4px;
+  color: #989898;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .checkbox-container>input {
@@ -257,6 +260,7 @@ h1 > span {
   background: transparent;
   outline: none;
   padding: 6px 15px 6px 5px;
+  color: #4F4F51;
 }
 
 #new-task p {
@@ -271,6 +275,64 @@ h1 > span {
 
 .new-task-description {
   padding: 10px 10px 100px !important;
+}
+
+.tags-container {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.tag {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin: 5px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #4F4F51 !important;
+  cursor: pointer;
+}
+
+.new-subtask-container {
+  border: 2px solid #EBEBEB;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.new-subtask-container input {
+  border: none;
+  background: transparent;
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #989898;
+  outline: none;
+}
+
+.new-subtask-container input[type="submit"] {
+  cursor: pointer;
+}
+
+.new-subtask-container input[type="text"] {
+  width: 90%;
+  overflow-wrap: break-word;
+  color: #7B7B7B;
+}
+
+.new-subtask-container input::-webkit-input-placeholder {
+  color: #989898;
+}
+
+.subtask {
+  hyphens: auto;
+  overflow-wrap: anywhere;
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #7B7B7B;
+  display: inline;
 }
 
 /* -- calendar -- */

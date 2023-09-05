@@ -36,7 +36,7 @@ export default function NewTask() {
 
         for (let i = 0; i < tagNames.length; i++) {
             tagElements[i] =
-                <input key={i} type="button" value={tagNames[i]} style={{ backgroundColor: tagColors[i] }} />
+                <input className="tag" key={i} type="button" value={tagNames[i]} style={{ backgroundColor: tagColors[i] }} />
         }
 
         return tagElements
@@ -44,23 +44,50 @@ export default function NewTask() {
 
     function newSubtask(e) {
         e.preventDefault()
-        let currentSubtasks = subtasks.slice()
-        currentSubtasks.push(e.target[1].value)
-        setSubtasks(currentSubtasks)
-        e.target[1].value = ""
+
+        if (e.target[1].value.replace(/\s/g, '').length) {
+            let currentSubtasks = subtasks.slice()
+            currentSubtasks.push(e.target[1].value)
+            setSubtasks(currentSubtasks)
+            e.target[1].value = ""
+        }
     }
 
     function subtaskElements(subtasks) {
         let subtaskElements = []
         for (let i = 0; i < subtasks.length; i++) {
-            subtaskElements[i] = <p key={i}>{subtasks[i]}</p>
+            subtaskElements[i] =
+                <div key={i} style={{ padding: "5px" }}>
+                    <label className="checkbox-container" style={{ transition: "all 0.2s" }} >
+                        <input type="checkbox" onChange={handleCheck} />
+                        <span className="checkmarkCompleted" />
+                        {subtasks[i]}
+                    </label>
+                </div>
         }
 
         return subtaskElements
     }
 
+    function handleCheck(e) {
+        if (e.target.checked) {
+            e.target.labels[0].style.opacity = "50%"
+            e.target.labels[0].style.textDecoration = "line-through"
+        } else {
+            e.target.labels[0].style.opacity = "100%"
+            e.target.labels[0].style.textDecoration = "none"
+        }
+    }
+
     function handleSubmit(e) {
-        e.preventDefault()
+        if (!e.target[0].value.replace(/\s/g, '').length) {
+            e.preventDefault()
+        } else {
+            // name is not empty
+            console.log(e)
+        }
+
+        e.preventDefault() //delete this
     }
 
     return (
@@ -68,7 +95,7 @@ export default function NewTask() {
             <h1>Task:</h1>
 
             <form id="new-task" onSubmit={handleSubmit}>
-                <input spellCheck="false" type="text" placeholder="Name" /><br />
+                <input spellCheck="false" type="text" placeholder="Name" required /><br />
                 <input spellCheck="false" className="new-task-description" type="text" placeholder="Description" />
                 <br />
 
@@ -79,20 +106,26 @@ export default function NewTask() {
                 </select><br />
 
                 <p>Due Date</p>
-                <input type="date" name="date" min={currentDate} max={"2099-12-31"} value={currentDate} /><br />
+                <input type="date" name="date" min={currentDate} max={"2099-12-31"} defaultValue={currentDate} /><br />
 
-                <p>Tags</p>
-                {tagsMenu(tags)}
-                <input type="button" value="+ Add Tag" /><br />
-
+                <div className="tags-container" >
+                    <p>Tags</p>
+                    <div className="tags-menu" >
+                        {tagsMenu(tags)}
+                        <input className="tag" type="button" value="+ Add Tag" /><br />
+                    </div>
+                </div>
                 <input type="submit" />
             </form>
 
             <h1>Subtasks:</h1>
-            <form onSubmit={newSubtask}>
+
+            <form onSubmit={newSubtask} className="new-subtask-container">
                 <input type="submit" value={"+"} /><input type="text" placeholder="Add New Subtask" />
             </form>
-            {subtaskElements(subtasks)}
+            <div style={{ marginTop: "10px" }}>
+                {subtaskElements(subtasks)}
+            </div>
         </div>
     )
 }
