@@ -286,6 +286,7 @@ h1 > span {
 .tag {
   border: none;
   border-radius: 5px;
+  outline: none;
   padding: 8px 12px;
   margin: 5px;
   font-family: 'Rubik', sans-serif;

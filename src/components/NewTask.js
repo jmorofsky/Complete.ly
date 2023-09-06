@@ -36,10 +36,24 @@ export default function NewTask() {
 
         for (let i = 0; i < tagNames.length; i++) {
             tagElements[i] =
-                <input className="tag" key={i} type="button" value={tagNames[i]} style={{ backgroundColor: tagColors[i] }} />
+                <input className="tag" key={i} type="button" value={tagNames[i]} style={{ backgroundColor: tagColors[i], opacity: "50%" }} selected={false} onClick={handleTag} />
         }
 
         return tagElements
+    }
+
+    function handleTag(e) {
+        if (e.target.selected) {
+            e.target.selected = false
+            e.target.style.opacity = "50%"
+        } else {
+            e.target.selected = true
+            e.target.style.opacity = "100%"
+        }
+    }
+
+    function handleNewTag() {
+        
     }
 
     function newSubtask(e) {
@@ -112,7 +126,7 @@ export default function NewTask() {
                     <p>Tags</p>
                     <div className="tags-menu" >
                         {tagsMenu(tags)}
-                        <input className="tag" type="button" value="+ Add Tag" /><br />
+                        <input className="tag" type="button" value="+ Add Tag" onClick={handleNewTag} /><br />
                     </div>
                 </div>
                 <input type="submit" />

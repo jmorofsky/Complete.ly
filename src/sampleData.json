@@ -28,7 +28,9 @@
             "date": "08/30/2023",
             "tags": ["Education"],
             "lists": ["Personal", "Work"],
-            "subtasks": null
+            "subtasks": {
+                "practice": true
+            }
         },
         {
             "id": 4,
