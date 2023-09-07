@@ -3,10 +3,10 @@ import sampleData from "../sampleData.json"
 
 export default function NewTask() {
     const [lists] = useState(Object.keys(sampleData.lists[0]))
-    const [tags] = useState(sampleData.tags[0])
+    const [tags, setTags] = useState(sampleData.tags[0])
     const [subtasks, setSubtasks] = useState([])
 
-    const date = new Date();
+    const date = new Date()
 
     let day = date.getDate()
     if (day < 10) {
@@ -52,8 +52,33 @@ export default function NewTask() {
         }
     }
 
-    function handleNewTag() {
-        
+    function handleTagChange(e) {
+        const hide = document.getElementById('hide')
+        const txt = e.target
+
+        txt.style.cursor = "initial"
+        hide.textContent = txt.value
+        let width = hide.offsetWidth + 10
+        txt.style.width = width + "px"
+    }
+
+    function handleNewTag(tag) {
+        if (!(tag in tags)) {
+            let R = Math.floor((Math.random() * 127) + 127)
+            let G = Math.floor((Math.random() * 127) + 127)
+            let B = Math.floor((Math.random() * 127) + 127)
+
+            let rgb = (R << 16) + (G << 8) + B
+            rgb = `#${rgb.toString(16)}`
+
+            let tagsList = { ...tags }
+            tagsList[tag] = rgb
+
+            setTags(tagsList)
+
+            document.getElementById("new-tag").value = ""
+            document.getElementById("new-tag").style.width = "61px"
+        }
     }
 
     function newSubtask(e) {
@@ -94,7 +119,7 @@ export default function NewTask() {
     }
 
     function handleSubmit(e) {
-        if (!e.target[0].value.replace(/\s/g, '').length) {
+        if (!e.target[0].value.replace(/\s/g, '').length || e.keyCode == 13) {
             e.preventDefault()
         } else {
             // name is not empty
@@ -109,24 +134,41 @@ export default function NewTask() {
             <h1>Task:</h1>
 
             <form id="new-task" onSubmit={handleSubmit}>
-                <input spellCheck="false" type="text" placeholder="Name" required /><br />
-                <input spellCheck="false" className="new-task-description" type="text" placeholder="Description" />
+                <input type="text" placeholder="Name" required maxLength={30} onKeyDown={(e) => {
+                    if (e.code === "Enter") {
+                        e.preventDefault()
+                    }
+                }} />
+                <br />
+                <textarea className="new-task-description" placeholder="Description" maxLength={200} />
                 <br />
 
                 <p style={{ marginRight: "76px" }}>List</p>
                 <select name="list" >
                     <option value="" />
                     {listMenu(lists)}
-                </select><br />
+                </select>
+                <br />
 
                 <p>Due Date</p>
-                <input type="date" name="date" min={currentDate} max={"2099-12-31"} defaultValue={currentDate} /><br />
+                <input type="date" min={currentDate} max={"2099-12-31"} defaultValue={currentDate} onKeyDown={(e) => {
+                    if (e.code === "Enter") {
+                        e.preventDefault()
+                    }
+                }} />
+                <br />
 
                 <div className="tags-container" >
                     <p>Tags</p>
                     <div className="tags-menu" >
                         {tagsMenu(tags)}
-                        <input className="tag" type="button" value="+ Add Tag" onClick={handleNewTag} /><br />
+                        <span id="hide" /><input id="new-tag" className="tag" type="text" placeholder="Add Tag" onInput={handleTagChange} maxLength={30} onKeyDown={(e) => {
+                            if (e.code === "Enter") {
+                                e.preventDefault()
+                                handleNewTag(e.target.value)
+                            }
+                        }} />
+                        <br />
                     </div>
                 </div>
                 <input type="submit" />

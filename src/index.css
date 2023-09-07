@@ -73,11 +73,11 @@ body {
   min-width: 300px;
 }
 
-#main > h1 {
+#main>h1 {
   font-size: 47px;
 }
 
-h1 > span {
+h1>span {
   border: 2px solid #EBEBEB;
   padding: 5px 17px;
   border-radius: 10px;
@@ -274,7 +274,23 @@ h1 > span {
 }
 
 .new-task-description {
-  padding: 10px 10px 100px !important;
+  font-family: 'Rubik', sans-serif;
+  border: 2px solid #EBEBEB;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #7B7B7B;
+  background: transparent;
+  outline: none;
+  padding: 10px;
+  width: calc(100% - 25px);
+  resize: none;
+  height: 100px;
+}
+
+.new-task-description::-webkit-input-placeholder {
+  opacity: 50%;
 }
 
 .tags-container {
@@ -294,6 +310,21 @@ h1 > span {
   font-weight: 500;
   color: #4F4F51 !important;
   cursor: pointer;
+  transition: opacity 0.25s;
+}
+
+#new-tag {
+  background-color: #EBEBEB;
+  min-width: 61px;
+  width: 61px;
+  max-width: 250px;
+}
+
+#hide {
+  position: absolute;
+  height: 0;
+  overflow: hidden;
+  white-space: pre;
 }
 
 .new-subtask-container {
