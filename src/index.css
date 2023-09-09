@@ -129,7 +129,7 @@ h1>span {
   width: 0;
 }
 
-.checkmarkCompleted {
+.checkmark-true {
   position: absolute;
   top: 0;
   left: 0;
@@ -140,19 +140,19 @@ h1>span {
   cursor: pointer;
 }
 
-.checkmarkCompleted:after {
+.checkmark-true:after {
   content: "";
   position: absolute;
   opacity: 0;
   transition: all 0.2s;
 }
 
-.checkbox-container>input:checked~.checkmarkCompleted:after {
+.checkbox-container>input:checked~.checkmark-true:after {
   content: "";
   opacity: 100%;
 }
 
-.checkbox-container .checkmarkCompleted:after {
+.checkbox-container .checkmark-true:after {
   left: 6px;
   top: -11px;
   width: 8px;
@@ -164,7 +164,7 @@ h1>span {
   transform: rotate(45deg);
 }
 
-.checkmarkFailed {
+.checkmark-false {
   position: absolute;
   top: 0;
   left: 0;
@@ -175,19 +175,49 @@ h1>span {
   cursor: pointer;
 }
 
-.checkmarkFailed:after {
+.checkmark-false:after {
   content: "X";
   position: absolute;
   opacity: 0;
   transition: all 0.2s;
 }
 
-.checkbox-container>input:checked~.checkmarkFailed:after {
+.checkbox-container>input:checked~.checkmark-false:after {
   content: "X";
   opacity: 100%;
 }
 
-.checkbox-container .checkmarkFailed:after {
+.checkbox-container .checkmark-false:after {
+  top: -11px;
+  left: -2px;
+  color: #FC9E9C;
+  font-size: 32px;
+}
+
+.checkmark-null {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  border: 2px solid #EBEBEB;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkmark-null:after {
+  content: "X";
+  position: absolute;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.checkbox-container>input:checked~.checkmark-null:after {
+  content: "X";
+  opacity: 100%;
+}
+
+.checkbox-container .checkmark-null:after {
   top: -11px;
   left: -2px;
   color: #FC9E9C;
@@ -266,6 +296,9 @@ h1>span {
 #new-task p {
   display: inline;
   margin-right: 35px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7B7B7B;
 }
 
 #new-task option {

@@ -9,9 +9,59 @@ import NewTask from '../components/NewTask'
 // repeating tasks, daily, weekly, etc
 
 export default function Main() {
-    const [todos] = useState(sampleData.todoItems)
+    const [todos, setTodos] = useState(sampleData)
     const [newTask, setNewTask] = useState(false)
-    let todoElements = todos.map(TodoItem)
+    const [update, setUpdate] = useState(false)
+    let numberOfTodos = todos.todoItems.length
+    let todoItems = todos.todoItems
+    let todoElements = []
+
+    todoItems.forEach(todo => {
+        todoElements.push(
+            <div key={todo.id}>
+                <div className="todo-item">
+                    <label className="checkbox-container" >
+                        {todo.completed === true || todo.completed === false ?
+                            <>
+                                <input type="checkbox" checked={true} onChange={handleChange} id={todo.id} />
+                                <span className={"checkmark-" + todo.completed} />
+                            </>
+                            :
+                            <>
+                                <input type="checkbox" checked={false} onChange={handleChange} id={todo.id} />
+                                <span className={"checkmark-" + todo.completed} />
+                            </>
+                        }
+                    </label>
+
+                    <TodoItem
+                        id={todo.id}
+                        completed={todo.completed}
+                        text={todo.text}
+                        tags={todo.tags}
+                        lists={todo.lists}
+                        numberOfTodos={numberOfTodos}
+                    />
+                </div>
+            </div>
+        )
+    })
+
+    function handleChange(e) {
+        let id = e.target.id - 1
+
+        if (todoItems[id].completed) {
+            todoItems[id].completed = false
+        } else if (todoItems[id].completed === null) {
+            todoItems[id].completed = true
+        } else {
+            todoItems[id].completed = null
+        }
+
+        setUpdate(!update)
+
+        //update database
+    }
 
     function handleClick() {
         setNewTask(true)
@@ -22,7 +72,7 @@ export default function Main() {
             <div id='main'>
                 <h1>
                     Today&emsp;&emsp;
-                    <span>{todos.length}</span>
+                    <span>{numberOfTodos}</span>
                 </h1>
 
                 <div className='new-task' onClick={handleClick}>
@@ -42,7 +92,7 @@ export default function Main() {
             </div>
 
             {newTask ?
-                <NewTask />
+                <NewTask todos={todos} setTodos={setTodos} setNewTask={setNewTask} />
                 : null
             }
         </div>

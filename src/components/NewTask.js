@@ -1,10 +1,10 @@
 import React, { useState } from "react"
-import sampleData from "../sampleData.json"
 
-export default function NewTask() {
-    const [lists] = useState(Object.keys(sampleData.lists[0]))
-    const [tags, setTags] = useState(sampleData.tags[0])
+export default function NewTask(props) {
+    const [lists] = useState(Object.keys(props.todos.lists[0]))
+    const [tags, setTags] = useState(props.todos.tags[0])
     const [subtasks, setSubtasks] = useState([])
+    const [todoItems, setTodoItems] = useState(props.todos.todoItems)
 
     const date = new Date()
 
@@ -78,6 +78,11 @@ export default function NewTask() {
 
             document.getElementById("new-tag").value = ""
             document.getElementById("new-tag").style.width = "61px"
+
+            //add new tag to data
+            let newTodos = props.todos
+            newTodos.tags = tagsList
+            props.setTodos(newTodos)
         }
     }
 
@@ -119,14 +124,42 @@ export default function NewTask() {
     }
 
     function handleSubmit(e) {
-        if (!e.target[0].value.replace(/\s/g, '').length || e.keyCode == 13) {
-            e.preventDefault()
-        } else {
-            // name is not empty
-            console.log(e)
-        }
+        e.preventDefault()
 
-        e.preventDefault() //delete this
+        if (e.target[0].value.replace(/\s/g, '').length && e.keyCode != 13) {
+            // name is not empty
+            let id = todoItems.length + 1
+            let newTodos = todoItems
+            let formattedTags = []
+            let list = ""
+
+            if (e.target[2].selectedIndex != 0) {
+                let index = e.target[2].selectedIndex
+                list = e.target[2].options[index].innerText
+            }
+
+            for (let i = 4; i < Object.keys(tags).length + 4; i++) {
+                if (e.target[i].selected) {
+                    formattedTags.push(e.target[i].value)
+                }
+            }
+
+            newTodos.push({
+                id: id,
+                text: e.target[0].value,
+                description: e.target[1].value,
+                completed: null,
+                date: e.target[3].value,
+                tags: formattedTags,
+                lists: list
+            })
+
+            let finalTodos = props.todos
+            finalTodos["todoItems"] = newTodos
+            props.setTodos(finalTodos)
+
+            props.setNewTask(false)
+        }
     }
 
     return (

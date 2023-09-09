@@ -4,6 +4,7 @@ export const Separator = () => (
         backgroundColor: "#EBEBEB",
         height: "2px",
         width: "100%",
-        border: "none"
+        border: "none",
+        margin: "20px 0 10px"
     }} />
 )
