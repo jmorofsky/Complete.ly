@@ -236,12 +236,14 @@ export default function NewTask(props) {
                     {subtaskElements(subtasks)}
                 </div>
 
-                <input type="button" value="Discard Task" className="new-task-submit" onClick={handleDiscard} style={{
-                    background: "transparent",
-                    border: "2px solid #EBEBEB",
-                    marginRight: "10%"
-                }} />
-                <input type="submit" className="new-task-submit" />
+                <div className="submit-container">
+                    <input type="button" value="Discard Task" className="new-task-submit" onClick={handleDiscard} style={{
+                        background: "transparent",
+                        border: "2px solid #EBEBEB",
+                        marginRight: "10%"
+                    }} />
+                    <input type="submit" className="new-task-submit" />
+                </div>
             </form>
         </div>
     )

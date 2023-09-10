@@ -244,6 +244,7 @@ h1>span {
 
 #new-task {
   position: relative;
+  height: 100%;
 }
 
 #new-task input {
@@ -408,6 +409,12 @@ h1>span {
   font-weight: 500;
   color: #7B7B7B;
   display: inline;
+}
+
+.submit-container {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
 }
 
 .new-task-submit {
