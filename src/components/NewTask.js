@@ -4,7 +4,7 @@ export default function NewTask(props) {
     const [lists] = useState(Object.keys(props.todos.lists[0]))
     const [tags, setTags] = useState(props.todos.tags[0])
     const [subtasks, setSubtasks] = useState([])
-    const [todoItems, setTodoItems] = useState(props.todos.todoItems)
+    const [todoItems] = useState(props.todos.todoItems)
 
     const date = new Date()
 
@@ -86,15 +86,19 @@ export default function NewTask(props) {
         }
     }
 
-    function newSubtask(e) {
-        e.preventDefault()
-
-        if (e.target[1].value.replace(/\s/g, '').length) {
+    function newSubtask(subtask) {
+        if (subtask.replace(/\s/g, '').length) {
+            // if not empty
             let currentSubtasks = subtasks.slice()
-            currentSubtasks.push(e.target[1].value)
+            currentSubtasks.push(subtask)
             setSubtasks(currentSubtasks)
-            e.target[1].value = ""
+            document.getElementById("new-subtask").value = ""
         }
+    }
+
+    function handleButtonClick() {
+        let subtask = document.getElementById("new-subtask").value
+        newSubtask(subtask)
     }
 
     function subtaskElements(subtasks) {
@@ -104,7 +108,7 @@ export default function NewTask(props) {
                 <div key={i} style={{ padding: "5px" }}>
                     <label className="checkbox-container" style={{ transition: "all 0.2s" }} >
                         <input type="checkbox" onChange={handleCheck} />
-                        <span className="checkmarkCompleted" />
+                        <span className="checkmark-true" />
                         {subtasks[i]}
                     </label>
                 </div>
@@ -120,6 +124,20 @@ export default function NewTask(props) {
         } else {
             e.target.labels[0].style.opacity = "100%"
             e.target.labels[0].style.textDecoration = "none"
+        }
+    }
+
+    function handleDiscard() {
+        if (
+            document.getElementById("name").value != ""
+            || document.getElementById("desc").value != ""
+            || subtasks.length != 0
+        ) {
+            if (window.confirm("Are you sure you want to discard this task?")) {
+                props.setNewTask(false)
+            }
+        } else {
+            props.setNewTask(false)
         }
     }
 
@@ -167,13 +185,13 @@ export default function NewTask(props) {
             <h1>Task:</h1>
 
             <form id="new-task" onSubmit={handleSubmit}>
-                <input type="text" placeholder="Name" required maxLength={30} onKeyDown={(e) => {
+                <input id="name" type="text" placeholder="Name" required maxLength={30} onKeyDown={(e) => {
                     if (e.code === "Enter") {
                         e.preventDefault()
                     }
                 }} />
                 <br />
-                <textarea className="new-task-description" placeholder="Description" maxLength={200} />
+                <textarea id="desc" className="new-task-description" placeholder="Description" maxLength={200} />
                 <br />
 
                 <p style={{ marginRight: "76px" }}>List</p>
@@ -195,7 +213,7 @@ export default function NewTask(props) {
                     <p>Tags</p>
                     <div className="tags-menu" >
                         {tagsMenu(tags)}
-                        <span id="hide" /><input id="new-tag" className="tag" type="text" placeholder="Add Tag" onInput={handleTagChange} maxLength={30} onKeyDown={(e) => {
+                        <span id="hide" /><input id="new-tag" className="tag" type="text" placeholder="+ Add Tag" onInput={handleTagChange} maxLength={30} onKeyDown={(e) => {
                             if (e.code === "Enter") {
                                 e.preventDefault()
                                 handleNewTag(e.target.value)
@@ -204,17 +222,27 @@ export default function NewTask(props) {
                         <br />
                     </div>
                 </div>
-                <input type="submit" />
-            </form>
 
-            <h1>Subtasks:</h1>
+                <h1>Subtasks:</h1>
+                <div className="new-subtask-container">
+                    <input type="button" value={"+"} onClick={handleButtonClick} /><input id="new-subtask" type="text" placeholder="Add New Subtask" onKeyDown={(e) => {
+                        if (e.code === "Enter") {
+                            e.preventDefault()
+                            newSubtask(e.target.value)
+                        }
+                    }} />
+                </div>
+                <div style={{ marginTop: "10px" }}>
+                    {subtaskElements(subtasks)}
+                </div>
 
-            <form onSubmit={newSubtask} className="new-subtask-container">
-                <input type="submit" value={"+"} /><input type="text" placeholder="Add New Subtask" />
+                <input type="button" value="Discard Task" className="new-task-submit" onClick={handleDiscard} style={{
+                    background: "transparent",
+                    border: "2px solid #EBEBEB",
+                    marginRight: "10%"
+                }} />
+                <input type="submit" className="new-task-submit" />
             </form>
-            <div style={{ marginTop: "10px" }}>
-                {subtaskElements(subtasks)}
-            </div>
         </div>
     )
 }

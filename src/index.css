@@ -188,10 +188,11 @@ h1>span {
 }
 
 .checkbox-container .checkmark-false:after {
-  top: -11px;
-  left: -2px;
+  top: -7px;
+  left: -1px;
   color: #FC9E9C;
-  font-size: 32px;
+  font-size: 26px;
+  font-weight: 700;
 }
 
 .checkmark-null {
@@ -239,6 +240,10 @@ h1>span {
 
 .new-task-container h1 {
   color: #555555;
+}
+
+#new-task {
+  position: relative;
 }
 
 #new-task input {
@@ -332,6 +337,11 @@ h1>span {
   margin: 0;
 }
 
+.tags-menu {
+  margin-left: 31px;
+  margin-top: 5px;
+}
+
 .tag {
   border: none;
   border-radius: 5px;
@@ -348,8 +358,8 @@ h1>span {
 
 #new-tag {
   background-color: #EBEBEB;
-  min-width: 61px;
-  width: 61px;
+  min-width: 73px;
+  width: 73px;
   max-width: 250px;
 }
 
@@ -376,7 +386,7 @@ h1>span {
   outline: none;
 }
 
-.new-subtask-container input[type="submit"] {
+.new-subtask-container input[type="button"] {
   cursor: pointer;
 }
 
@@ -398,6 +408,19 @@ h1>span {
   font-weight: 500;
   color: #7B7B7B;
   display: inline;
+}
+
+.new-task-submit {
+  border: none;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #555555 !important;
+  background-color: #FFD33C;
+  border-radius: 10px;
+  width: 45%;
+  height: 40px;
+  cursor: pointer;
 }
 
 /* -- calendar -- */
