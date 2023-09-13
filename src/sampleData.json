@@ -55,8 +55,9 @@
 
     "lists": [
         {
-            "Personal": "#FC9E9C",
-            "Work": "#C1E1C1"
+            "Personal": "#FE6C6A",
+            "Work": "#69D9E8",
+            "Projects": "#FFD33C"
         }
     ]
 }

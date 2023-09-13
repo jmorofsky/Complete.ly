@@ -62,8 +62,7 @@ export default function NewTask(props) {
         txt.style.width = width + "px"
     }
 
-    function handleNewTag(target) {
-        let tag = target.value
+    function handleNewTag(tag) {
         if (!(tag in tags)) {
             let R = Math.floor((Math.random() * 127) + 127)
             let G = Math.floor((Math.random() * 127) + 127)
@@ -220,7 +219,7 @@ export default function NewTask(props) {
                         <span id="hide" /><input id="new-tag" className="tag" type="text" placeholder="+ Add Tag" onInput={handleTagChange} maxLength={30} onKeyDown={(e) => {
                             if (e.code === "Enter") {
                                 e.preventDefault()
-                                handleNewTag(e.target)
+                                handleNewTag(e.target.value)
                             }
                         }} />
                         <br />
@@ -252,3 +251,5 @@ export default function NewTask(props) {
         </div>
     )
 }
+
+// todo delete tags, new list, delete list
