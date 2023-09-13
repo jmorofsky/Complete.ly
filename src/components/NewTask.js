@@ -132,9 +132,9 @@ export default function NewTask(props) {
 
     function handleDiscard() {
         if (
-            document.getElementById("name").value != ""
-            || document.getElementById("desc").value != ""
-            || subtasks.length != 0
+            document.getElementById("name").value !== ""
+            || document.getElementById("desc").value !== ""
+            || subtasks.length !== 0
         ) {
             if (window.confirm("Are you sure you want to discard this task?")) {
                 props.setNewTask(false)
@@ -147,14 +147,14 @@ export default function NewTask(props) {
     function handleSubmit(e) {
         e.preventDefault()
 
-        if (e.target[0].value.replace(/\s/g, '').length && e.keyCode != 13) {
+        if (e.target[0].value.replace(/\s/g, '').length && e.keyCode !== 13) {
             // name is not empty
             let id = todoItems.length + 1
             let newTodos = todoItems
             let formattedTags = []
             let list = ""
 
-            if (e.target[2].selectedIndex != 0) {
+            if (e.target[2].selectedIndex !== 0) {
                 let index = e.target[2].selectedIndex
                 list = e.target[2].options[index].innerText
             }
