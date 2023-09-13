@@ -39,6 +39,7 @@ export default function Main() {
                         completed={todo.completed}
                         text={todo.text}
                         tags={todo.tags}
+                        listArray={todos.lists}
                         lists={todo.lists}
                         numberOfTodos={numberOfTodos}
                     />

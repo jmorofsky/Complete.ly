@@ -62,7 +62,8 @@ export default function NewTask(props) {
         txt.style.width = width + "px"
     }
 
-    function handleNewTag(tag) {
+    function handleNewTag(target) {
+        let tag = target.value
         if (!(tag in tags)) {
             let R = Math.floor((Math.random() * 127) + 127)
             let G = Math.floor((Math.random() * 127) + 127)
@@ -81,8 +82,11 @@ export default function NewTask(props) {
 
             //add new tag to data
             let newTodos = props.todos
-            newTodos.tags = tagsList
+            let tagsListArray = [tagsList]
+            newTodos.tags = tagsListArray
             props.setTodos(newTodos)
+        } else {
+            alert("Tag already exists!")
         }
     }
 
@@ -216,7 +220,7 @@ export default function NewTask(props) {
                         <span id="hide" /><input id="new-tag" className="tag" type="text" placeholder="+ Add Tag" onInput={handleTagChange} maxLength={30} onKeyDown={(e) => {
                             if (e.code === "Enter") {
                                 e.preventDefault()
-                                handleNewTag(e.target.value)
+                                handleNewTag(e.target)
                             }
                         }} />
                         <br />

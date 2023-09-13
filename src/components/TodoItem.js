@@ -7,6 +7,11 @@ export default function TodoItem(props) {
         isLastTodo = true
     }
 
+    let listElements = []
+    // props.lists.forEach(list => {
+        // listElements.push({props.listArray[list]: props.listArray[list]})
+    // })
+
     const activeStyle = {
         opacity: "50%",
         textDecoration: "line-through",
@@ -16,10 +21,10 @@ export default function TodoItem(props) {
     return (
         <>
             <div className="todo-text" style={props.completed ? activeStyle : null}>
-                {props.text} {props.tags}
+                {props.text}
             </div>
 
-            <div>{props.lists}</div>
+            <div>{props.lists} {props.tags}</div>
 
             {isLastTodo ? null : <Separator />}
         </>
