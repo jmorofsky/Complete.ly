@@ -122,6 +122,11 @@ export default function NewTask(props) {
             let newTodos = todoItems
             let formattedTags = []
             let list = ""
+            let finalSubtasks = {}
+
+            for(let i = 0; i < subtasks.length; i++) {
+                finalSubtasks[subtasks[i]] = e.target[i + 11].checked
+            }
 
             if (e.target[2].selectedIndex !== 0) {
                 let index = e.target[2].selectedIndex
@@ -141,7 +146,8 @@ export default function NewTask(props) {
                 completed: null,
                 date: e.target[3].value,
                 tags: formattedTags,
-                lists: list
+                lists: list,
+                subtasks: finalSubtasks
             })
 
             let finalTodos = props.todos

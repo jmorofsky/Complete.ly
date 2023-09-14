@@ -41,6 +41,7 @@ export default function Main(props) {
                         listArray={props.todos.lists}
                         lists={todo.lists}
                         numberOfTodos={numberOfTodos}
+                        subtasks={todo.subtasks}
                     />
                 </div>
             </div>
