@@ -10,7 +10,7 @@ export default function NewTask(props) {
     useEffect(() => {
         setLists(Object.keys(props.todos.lists[0]))
         setTags(props.todos.tags[0])
-    }, [props.todos.lists[0], props.todos.tags[0]])
+    }, [props.todos.lists, props.todos.tags])
 
     const date = new Date()
 

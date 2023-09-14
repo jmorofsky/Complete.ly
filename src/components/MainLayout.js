@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Outlet, NavLink, Link } from 'react-router-dom'
+import { Outlet, NavLink } from 'react-router-dom'
 import upcomingIcon from "../images/upcomingIcon.png"
 import todayIcon from "../images/todayIcon.png"
 import calendarIcon from "../images/calendarIcon.png"
@@ -7,6 +7,7 @@ import archiveIcon from "../images/archiveIcon.png"
 import trashIcon from "../images/trashIcon.png"
 import { Separator } from './Separator'
 import NewTag from './NewTag'
+import MenuNavItem from './ManuNavItem'
 
 export default function MainLayout(props) {
     const [lists, setLists] = useState(props.todos.lists[0])
@@ -14,13 +15,7 @@ export default function MainLayout(props) {
 
     useEffect(() => {
         setTags(props.todos.tags[0])
-    }, [props.todos.tags[0]])
-
-    const activeStyle = {
-        fontWeight: "700",
-        color: "#555555",
-        backgroundColor: "#EBEBEB"
-    }
+    }, [props.todos.tags])
 
     function listMenu(lists) {
         let listArray = []
@@ -96,30 +91,11 @@ export default function MainLayout(props) {
                     <h1 className='menu-title'>Menu</h1>
 
                     <p>TASKS</p>
-                    <NavLink to="/upcoming" style={(e) => e.isActive ? activeStyle : null}>
-                        <img src={upcomingIcon} style={{ width: "13px" }} alt='' />
-                        &emsp;Upcoming
-                    </NavLink>
-
-                    <NavLink to="/" style={(e) => e.isActive ? activeStyle : null}>
-                        <img src={todayIcon} style={{ width: "15px" }} alt='' />
-                        &emsp;Today
-                    </NavLink>
-
-                    <NavLink to="/calendar" style={(e) => e.isActive ? activeStyle : null}>
-                        <img src={calendarIcon} style={{ width: "15px" }} alt='' />
-                        &emsp;Calendar
-                    </NavLink>
-
-                    <NavLink to="/archive" style={(e) => e.isActive ? activeStyle : null}>
-                        <img src={archiveIcon} style={{ width: "15px" }} alt='' />
-                        &emsp;Archive
-                    </NavLink>
-
-                    <NavLink to="/trash" style={(e) => e.isActive ? activeStyle : null}>
-                        <img src={trashIcon} style={{ width: "15px" }} alt='' />
-                        &emsp;Trash
-                    </NavLink>
+                    <MenuNavItem name="Upcoming" img={upcomingIcon} />
+                    <MenuNavItem name="Today" img={todayIcon} />
+                    <MenuNavItem name="Calendar" img={calendarIcon} />
+                    <MenuNavItem name="Archive" img={archiveIcon} />
+                    <MenuNavItem name="Trash" img={trashIcon} />
 
                     <Separator />
 
@@ -145,4 +121,4 @@ export default function MainLayout(props) {
     )
 }
 
-    // todo delete tags, delete list
+    // todo delete tags, delete list, click on tasks, subtasks
