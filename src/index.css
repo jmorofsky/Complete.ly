@@ -22,7 +22,7 @@ body {
 .menu-container {
   flex-basis: 20%;
   max-width: 300px;
-  min-width: 160px;
+  min-width: 240px;
   background-color: #F4F4F4;
   margin: 20px;
   border-radius: 15px;
@@ -51,14 +51,39 @@ body {
   background-color: #EBEBEB;
 }
 
-#no-hover:hover {
-  background-color: #F4F4F4;
-}
-
 .menu-container>p {
   color: #6E6E6E;
   font-size: 14px;
   font-weight: 700;
+}
+
+.new-list {
+  margin: 10px 0 0 7px;
+}
+
+.new-list input {
+  font-family: 'Rubik', sans-serif;
+  color: #7B7B7B;
+  font-weight: 500;
+  font-size: 18px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.new-list input[type="text"] {
+  width: 74%;
+}
+
+.new-list input[type="submit"] {
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.menu-tags-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* -- main page -- */
@@ -87,7 +112,7 @@ h1>span {
 .new-task {
   border: 2px solid #EBEBEB;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
@@ -98,11 +123,22 @@ h1>span {
   color: #7B7B7B;
   font-size: 18px;
   font-weight: 500;
-  padding: 7px 25px;
+  padding: 5px 25px;
+  margin-bottom: 0;
+}
+
+.todoItem-tags {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 15px;
+  align-items: baseline;
+  margin: 10px 0 0 36px;
+  max-height: 30px;
 }
 
 .todo-text {
   display: inline-block;
+  margin-bottom: 4px;
 }
 
 .checkbox-container {

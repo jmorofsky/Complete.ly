@@ -1,10 +1,16 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import NewTag from "./NewTag"
 
 export default function NewTask(props) {
-    const [lists] = useState(Object.keys(props.todos.lists[0]))
+    const [lists, setLists] = useState(Object.keys(props.todos.lists[0]))
     const [tags, setTags] = useState(props.todos.tags[0])
     const [subtasks, setSubtasks] = useState([])
     const [todoItems] = useState(props.todos.todoItems)
+
+    useEffect(() => {
+        setLists(Object.keys(props.todos.lists[0]))
+        setTags(props.todos.tags[0])
+    }, [props.todos.lists[0], props.todos.tags[0]])
 
     const date = new Date()
 
@@ -49,43 +55,6 @@ export default function NewTask(props) {
         } else {
             e.target.selected = true
             e.target.style.opacity = "100%"
-        }
-    }
-
-    function handleTagChange(e) {
-        const hide = document.getElementById('hide')
-        const txt = e.target
-
-        txt.style.cursor = "initial"
-        hide.textContent = txt.value
-        let width = hide.offsetWidth + 10
-        txt.style.width = width + "px"
-    }
-
-    function handleNewTag(tag) {
-        if (!(tag in tags)) {
-            let R = Math.floor((Math.random() * 127) + 127)
-            let G = Math.floor((Math.random() * 127) + 127)
-            let B = Math.floor((Math.random() * 127) + 127)
-
-            let rgb = (R << 16) + (G << 8) + B
-            rgb = `#${rgb.toString(16)}`
-
-            let tagsList = { ...tags }
-            tagsList[tag] = rgb
-
-            setTags(tagsList)
-
-            document.getElementById("new-tag").value = ""
-            document.getElementById("new-tag").style.width = "61px"
-
-            //add new tag to data
-            let newTodos = props.todos
-            let tagsListArray = [tagsList]
-            newTodos.tags = tagsListArray
-            props.setTodos(newTodos)
-        } else {
-            alert("Tag already exists!")
         }
     }
 
@@ -216,12 +185,7 @@ export default function NewTask(props) {
                     <p>Tags</p>
                     <div className="tags-menu" >
                         {tagsMenu(tags)}
-                        <span id="hide" /><input id="new-tag" className="tag" type="text" placeholder="+ Add Tag" onInput={handleTagChange} maxLength={30} onKeyDown={(e) => {
-                            if (e.code === "Enter") {
-                                e.preventDefault()
-                                handleNewTag(e.target.value)
-                            }
-                        }} />
+                        <NewTag tags={tags} setTags={setTags} todos={props.todos} setTodos={props.setTodos} />
                         <br />
                     </div>
                 </div>
@@ -251,5 +215,3 @@ export default function NewTask(props) {
         </div>
     )
 }
-
-// todo delete tags, new list, delete list

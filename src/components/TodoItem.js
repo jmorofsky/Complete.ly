@@ -13,13 +13,15 @@ export default function TodoItem(props) {
         transition: "all 0.2s"
     }
 
-    let listElement
+    let listElement = ""
 
     for (const list in props.listArray[0]) {
         if (list === props.lists) {
             listElement = <div style={{
-                margin: "0 25px 0 36px",
-                display: "inline"
+                marginRight: "15px",
+                display: "inline",
+                borderRight: "2px solid #EBEBEB",
+                paddingRight: "18px"
             }}>
                 <span style={{
                     backgroundColor: props.listArray[0][list],
@@ -44,7 +46,7 @@ export default function TodoItem(props) {
                     display: "inline",
                     backgroundColor: props.tagArray[0][tag],
                     cursor: "auto",
-                    marginRight: "15px"
+                    margin: "0 15px 0 0"
                 }}>
                     {tag}
                 </div>
@@ -59,12 +61,11 @@ export default function TodoItem(props) {
                 {props.text}
             </div>
 
-            <div style={
-                props.completed ?
-                    { opacity: "50%", marginTop: "15px", transition: "all 0.2s" } :
-                    { marginTop: "15px" }}>
+            {listElement !== "" || tagElements.length !== 0 ? <div className="todoItem-tags" style={
+                props.completed ? { opacity: "50%", transition: "all 0.2s" } : null}>
                 {listElement} {tagElements}
-            </div>
+            </div> : null}
+            
 
             {isLastTodo ? null : <Separator />}
         </>

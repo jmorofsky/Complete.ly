@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import sampleData from '../sampleData.json'
 import TodoItem from '../components/TodoItem'
 import NewTask from '../components/NewTask'
 
@@ -8,12 +7,11 @@ import NewTask from '../components/NewTask'
 // tags
 // repeating tasks, daily, weekly, etc
 
-export default function Main() {
-    const [todos, setTodos] = useState(sampleData)
+export default function Main(props) {
     const [newTask, setNewTask] = useState(false)
     const [update, setUpdate] = useState(false)
-    let numberOfTodos = todos.todoItems.length
-    let todoItems = todos.todoItems
+    let numberOfTodos = props.todos.todoItems.length
+    let todoItems = props.todos.todoItems
     let todoElements = []
 
     todoItems.forEach(todo => {
@@ -38,9 +36,9 @@ export default function Main() {
                         id={todo.id}
                         completed={todo.completed}
                         text={todo.text}
-                        tagArray={todos.tags}
+                        tagArray={props.todos.tags}
                         tags={todo.tags}
-                        listArray={todos.lists}
+                        listArray={props.todos.lists}
                         lists={todo.lists}
                         numberOfTodos={numberOfTodos}
                     />
@@ -94,7 +92,7 @@ export default function Main() {
             </div>
 
             {newTask ?
-                <NewTask todos={todos} setTodos={setTodos} setNewTask={setNewTask} />
+                <NewTask todos={props.todos} setTodos={props.setTodos} setNewTask={setNewTask} />
                 : null
             }
         </div>
