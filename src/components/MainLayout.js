@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Outlet, NavLink } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import upcomingIcon from "../images/upcomingIcon.png"
 import todayIcon from "../images/todayIcon.png"
 import calendarIcon from "../images/calendarIcon.png"

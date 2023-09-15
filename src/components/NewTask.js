@@ -124,7 +124,7 @@ export default function NewTask(props) {
             let list = ""
             let finalSubtasks = {}
 
-            for(let i = 0; i < subtasks.length; i++) {
+            for (let i = 0; i < subtasks.length; i++) {
                 finalSubtasks[subtasks[i]] = e.target[i + 11].checked
             }
 
@@ -150,7 +150,7 @@ export default function NewTask(props) {
                 subtasks: finalSubtasks
             })
 
-            let finalTodos = props.todos
+            let finalTodos = { ...props.todos }
             finalTodos["todoItems"] = newTodos
             props.setTodos(finalTodos)
 
