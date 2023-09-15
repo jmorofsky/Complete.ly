@@ -86,6 +86,10 @@ body {
   flex-wrap: wrap;
 }
 
+#menu-badge:hover > span {
+  background-color: #FAFAFA;
+}
+
 /* -- main page -- */
 
 .main-wrapper {
@@ -278,8 +282,11 @@ h1>span {
   transition: opacity 0.25s;
 }
 
-#menu-badge:hover > span {
-  background-color: #FAFAFA;
+.todo-item-arrow {
+  font-size: 30px;
+  font-weight: 500;
+  float: right;
+  cursor: pointer;
 }
 
 /* -- new task -- */

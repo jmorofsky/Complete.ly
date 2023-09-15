@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import TodoItem from '../components/TodoItem'
 import NewTask from '../components/NewTask'
-
-// mark as important
-// subtasks
-// tags
-// repeating tasks, daily, weekly, etc
+import TaskDetails from '../components/TaskDetails'
 
 export default function Main(props) {
     const [newTask, setNewTask] = useState(false)
     const [update, setUpdate] = useState(false)
+    const [taskSelected, setTaskSelected] = useState(false)
+    const [selectedTodo, setSelectedTodo] = useState(null)
     let numberOfTodos = props.todos.todoItems.length
     let todoItems = props.todos.todoItems
     let todoElements = []
@@ -42,6 +40,10 @@ export default function Main(props) {
                         lists={todo.lists}
                         numberOfTodos={numberOfTodos}
                         subtasks={todo.subtasks}
+                        setTaskSelected={setTaskSelected}
+                        setSelectedTodo={setSelectedTodo}
+                        setNewTask={setNewTask}
+                        newTask={newTask}
                     />
                 </div>
             </div>
@@ -63,7 +65,15 @@ export default function Main(props) {
     }
 
     function handleClick() {
-        setNewTask(true)
+        if (taskSelected === true) {
+            if (window.confirm("Are you sure you want to discard your changes?")) {
+                setNewTask(true)
+                setTaskSelected(false)
+            }
+        } else {
+            setNewTask(true)
+            setTaskSelected(false)
+        }
     }
 
     return (
@@ -92,6 +102,16 @@ export default function Main(props) {
 
             {newTask ?
                 <NewTask todos={props.todos} setTodos={props.setTodos} setNewTask={setNewTask} />
+                : null
+            }
+
+            {taskSelected ?
+                <TaskDetails
+                    id={selectedTodo}
+                    setTaskSelected={setTaskSelected}
+                    todos={props.todos}
+                    setTodos={props.setTodos}
+                />
                 : null
             }
         </div>

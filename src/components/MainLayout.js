@@ -7,7 +7,7 @@ import archiveIcon from "../images/archiveIcon.png"
 import trashIcon from "../images/trashIcon.png"
 import { Separator } from './Separator'
 import NewTag from './NewTag'
-import MenuNavItem from './ManuNavItem'
+import MenuNavItem from './MenuNavItem'
 import ListItem from './ListItem'
 
 export default function MainLayout(props) {
@@ -131,4 +131,4 @@ export default function MainLayout(props) {
     )
 }
 
-// todo click on tasks, add animations, change today to only show todos from today, add badges, change how number of todos is calculated to be only for today
+// todo add animations, change today to only show todos from today, add badges, change how number of todos is calculated to be only for today

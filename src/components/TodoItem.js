@@ -84,16 +84,39 @@ export default function TodoItem(props) {
         }
     }
 
+    function handleClick() {
+        if (props.newTask === true) {
+            if (window.confirm("Are you sure you want to discard this task?")) {
+                props.setTaskSelected(true)
+                props.setSelectedTodo(props.id)
+                props.setNewTask(false)
+            }
+        } else {
+            props.setTaskSelected(true)
+            props.setSelectedTodo(props.id)
+            props.setNewTask(false)
+        }
+    }
+
     return (
         <>
             <div className="todo-text" style={props.completed ? activeStyle : null}>
                 {props.text}
             </div>
+            <span className="todo-item-arrow" onClick={handleClick}>{'>'}</span>
 
-            {listElement !== "" || tagElements.length !== 0 || subtaskElement !== null ? <div className="todoItem-tags" style={
-                props.completed ? { opacity: "50%", transition: "all 0.2s" } : null}>
-                {subtaskElement} {listElement} {tagElements}
-            </div> : null}
+            {listElement !== "" || tagElements.length !== 0 || subtaskElement !== null ?
+                <div className="todoItem-tags" style={
+                    props.completed ?
+                        { opacity: "50%", transition: "all 0.2s" }
+                        :
+                        null
+                }>
+                    {subtaskElement} {listElement} {tagElements}
+                </div>
+                :
+                null
+            }
 
             {isLastTodo ? null : <Separator />}
         </>

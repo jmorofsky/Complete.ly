@@ -1,28 +1,17 @@
 import React, { useState, useEffect } from "react"
 import NewTag from "./NewTag"
 
-export default function NewTask(props) {
+export default function TaskDetails(props) {
+    const [todoItems] = useState(props.todos.todoItems)
+    const selectedTodo = todoItems[props.id - 1]
     const [lists, setLists] = useState(Object.keys(props.todos.lists[0]))
     const [tags, setTags] = useState(props.todos.tags[0])
-    const [subtasks, setSubtasks] = useState([])
-    const [todoItems] = useState(props.todos.todoItems)
+    const [subtasks, setSubtasks] = useState(Object.keys(selectedTodo.subtasks))
 
     useEffect(() => {
         setLists(Object.keys(props.todos.lists[0]))
         setTags(props.todos.tags[0])
     }, [props.todos.lists, props.todos.tags])
-
-    const date = new Date()
-    let day = date.getDate()
-    if (day < 10) {
-        day = "0" + day
-    }
-    let month = date.getMonth() + 1
-    if (month < 10) {
-        month = "0" + month
-    }
-    let year = date.getFullYear()
-    let currentDate = `${year}-${month}-${day}`
 
     function listMenu(lists) {
         let listElements = []
@@ -40,8 +29,13 @@ export default function NewTask(props) {
         let tagElements = []
 
         for (let i = 0; i < tagNames.length; i++) {
-            tagElements[i] =
-                <input className="tag" key={i} type="button" value={tagNames[i]} style={{ backgroundColor: tagColors[i], opacity: "50%" }} selected={false} onClick={handleTag} />
+            if (selectedTodo.tags.includes(tagNames[i])) {
+                tagElements[i] =
+                    <input className="tag" key={i} type="button" value={tagNames[i]} style={{ backgroundColor: tagColors[i], opacity: "100%" }} selected={true} onClick={handleTag} />
+            } else {
+                tagElements[i] =
+                    <input className="tag" key={i} type="button" value={tagNames[i]} style={{ backgroundColor: tagColors[i], opacity: "50%" }} selected={false} onClick={handleTag} />
+            }
         }
 
         return tagElements
@@ -77,8 +71,12 @@ export default function NewTask(props) {
         for (let i = 0; i < subtasks.length; i++) {
             subtaskElements[i] =
                 <div key={i} style={{ padding: "5px" }}>
-                    <label className="checkbox-container" style={{ transition: "all 0.2s" }} >
-                        <input type="checkbox" onChange={handleCheck} />
+                    <label className="checkbox-container" style={selectedTodo.subtasks[subtasks[i]] ?
+                        { opacity: "50%", textDecoration: "line-through", transition: "all 0.2s" }
+                        :
+                        { transition: "all 0.2s" }
+                    } >
+                        <input type="checkbox" onChange={handleCheck} defaultChecked={selectedTodo.subtasks[subtasks[i]]} />
                         <span className="checkmark-true" />
                         {subtasks[i]}
                     </label>
@@ -100,15 +98,15 @@ export default function NewTask(props) {
 
     function handleDiscard() {
         if (
-            document.getElementById("name").value !== ""
-            || document.getElementById("desc").value !== ""
-            || subtasks.length !== 0
+            document.getElementById("name").value !== selectedTodo.text
+            || document.getElementById("desc").value !== selectedTodo.description
+            || subtasks.length !== Object.keys(selectedTodo.subtasks).length
         ) {
-            if (window.confirm("Are you sure you want to discard this task?")) {
-                props.setNewTask(false)
+            if (window.confirm("Are you sure you want to discard your changes?")) {
+                props.setTaskSelected(false)
             }
         } else {
-            props.setNewTask(false)
+            props.setTaskSelected(false)
         }
     }
 
@@ -117,7 +115,6 @@ export default function NewTask(props) {
 
         if (e.target[0].value.replace(/\s/g, '').length && e.keyCode !== 13) {
             // name is not empty
-            let id = todoItems.length + 1
             let newTodos = todoItems
             let formattedTags = []
             let list = ""
@@ -138,22 +135,22 @@ export default function NewTask(props) {
                 }
             }
 
-            newTodos.push({
-                id: id,
+            newTodos[selectedTodo.id - 1] = {
+                id: selectedTodo.id,
                 text: e.target[0].value,
                 description: e.target[1].value,
-                completed: null,
+                completed: selectedTodo.completed,
                 date: e.target[3].value,
                 tags: formattedTags,
                 lists: list,
                 subtasks: finalSubtasks
-            })
+            }
 
             let finalTodos = { ...props.todos }
             finalTodos["todoItems"] = newTodos
             props.setTodos(finalTodos)
 
-            props.setNewTask(false)
+            props.setTaskSelected(false)
         }
     }
 
@@ -162,24 +159,24 @@ export default function NewTask(props) {
             <h1>Task:</h1>
 
             <form id="new-task" onSubmit={handleSubmit}>
-                <input id="name" type="text" placeholder="Name" required maxLength={30} onKeyDown={(e) => {
+                <input id="name" type="text" defaultValue={selectedTodo.text} placeholder="Name" required maxLength={30} onKeyDown={(e) => {
                     if (e.code === "Enter") {
                         e.preventDefault()
                     }
                 }} />
                 <br />
-                <textarea id="desc" className="new-task-description" placeholder="Description" maxLength={200} />
+                <textarea id="desc" className="new-task-description" placeholder="Description" defaultValue={selectedTodo.description} maxLength={200} />
                 <br />
 
                 <p style={{ marginRight: "76px" }}>List</p>
-                <select name="list" >
+                <select name="list" defaultValue={selectedTodo.lists} >
                     <option value="" />
                     {listMenu(lists)}
                 </select>
                 <br />
 
                 <p>Due Date</p>
-                <input type="date" min={currentDate} max={"2099-12-31"} defaultValue={currentDate} onKeyDown={(e) => {
+                <input type="date" min={selectedTodo.date} max={"2099-12-31"} defaultValue={selectedTodo.date} onKeyDown={(e) => {
                     if (e.code === "Enter") {
                         e.preventDefault()
                     }
@@ -209,7 +206,7 @@ export default function NewTask(props) {
                 </div>
 
                 <div className="submit-container">
-                    <input type="button" value="Discard" className="new-task-submit" onClick={handleDiscard} style={{
+                    <input type="button" value="Discard Changes" className="new-task-submit" onClick={handleDiscard} style={{
                         background: "transparent",
                         border: "2px solid #EBEBEB",
                         marginRight: "10%"

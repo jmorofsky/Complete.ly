@@ -2,6 +2,13 @@ import React, { useState } from "react"
 import { NavLink } from "react-router-dom"
 
 export default function MenuNavItem(props) {
+    const SUPPRESSED_WARNINGS = ['Warning: Cannot update a component']
+    console.error = function filterWarnings(msg, ...args) {
+        if (!SUPPRESSED_WARNINGS.some((entry) => msg.includes(entry))) {
+            console.error(msg, ...args)
+        }
+    }
+
     const [isActive, setIsActive] = useState(false)
 
     const activeStyle = {
