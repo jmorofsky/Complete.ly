@@ -210,7 +210,7 @@ export default function NewTask(props) {
                 </div>
 
                 <div className="submit-container">
-                    <input type="button" value="Discard Task" className="new-task-submit" onClick={handleDiscard} style={{
+                    <input type="button" value="Discard" className="new-task-submit" onClick={handleDiscard} style={{
                         background: "transparent",
                         border: "2px solid #EBEBEB",
                         marginRight: "10%"

@@ -409,6 +409,11 @@ h1>span {
   transition: all 0.25s;
 }
 
+#menu-tag:hover {
+  opacity: 50%;
+  text-decoration: line-through;
+}
+
 #new-tag {
   background-color: #EBEBEB;
   min-width: 73px;

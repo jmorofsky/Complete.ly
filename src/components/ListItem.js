@@ -4,6 +4,13 @@ import { NavLink } from "react-router-dom"
 export default function ListItem(props) {
     const [isActive, setIsActive] = useState(false)
 
+    const activeStyle = {
+        fontWeight: "700",
+        color: "#555555",
+        backgroundColor: "#EBEBEB",
+        margin: "5px 0"
+    }
+
     function removeList(e) {
         e.preventDefault()
 
@@ -23,7 +30,7 @@ export default function ListItem(props) {
     return (
         <NavLink
             to={props.listName}
-            style={{ margin: "10px 0" }}
+            style={(e) => e.isActive ? activeStyle : { margin: "5px 0" }}
             onMouseEnter={() => setIsActive(true)}
             onMouseLeave={() => setIsActive(false)}
         >

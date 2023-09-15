@@ -66,7 +66,7 @@ export default function MainLayout(props) {
 
         for (let i = 0; i < tagNames.length; i++) {
             tagElements[i] =
-                <div key={i} className='tag' style={{
+                <div key={i} className='tag' id='menu-tag' onClick={removeTag} style={{
                     backgroundColor: tagColors[i],
                     width: "fit-content"
                 }} >
@@ -75,6 +75,23 @@ export default function MainLayout(props) {
         }
 
         return tagElements
+    }
+
+    function removeTag(e) {
+        if (window.confirm("Delete this tag?")) {
+            let tagName = e.target.textContent
+            let newTodos = { ...props.todos }
+
+            delete newTodos.tags[0][tagName]
+            newTodos.todoItems.forEach(todo => {
+                if (todo.tags.includes(tagName)) {
+                    let index = todo.tags.indexOf(tagName)
+                    todo.tags = todo.tags.splice(index, 1)
+                }
+            })
+
+            props.setTodos(newTodos)
+        }
     }
 
     return (
@@ -114,4 +131,4 @@ export default function MainLayout(props) {
     )
 }
 
-// todo delete tags, click on tasks
+// todo click on tasks, add animations, add badges
