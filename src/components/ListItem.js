@@ -82,13 +82,15 @@ export default function ListItem(props) {
                         opacity: "100%",
                         transition: "all 0.25s",
                         backgroundColor: "#FAFAFA",
-                        fontWeight: "500"
+                        fontWeight: "500",
+                        marginRight: "3px"
                     }}>{listNumber}</span>
                     :
                     <span className="badge" id="list-badge" style={{
                         float: "right",
                         opacity: "100%",
-                        transition: "all 0.25s"
+                        transition: "all 0.25s",
+                        marginRight: "3px"
                     }}>{listNumber}</span>
             }
         </NavLink>

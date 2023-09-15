@@ -102,7 +102,7 @@ export default function MainLayout(props) {
 
                     <p>TASKS</p>
                     <MenuNavItem name="Upcoming" img={upcomingIcon} />
-                    <MenuNavItem name="Today" img={todayIcon} />
+                    <MenuNavItem name="Today" img={todayIcon} todos={props.todos} />
                     <MenuNavItem name="Calendar" img={calendarIcon} />
                     <MenuNavItem name="Archive" img={archiveIcon} />
                     <MenuNavItem name="Trash" img={trashIcon} />
@@ -131,4 +131,4 @@ export default function MainLayout(props) {
     )
 }
 
-// todo click on tasks, add animations, add badges
+// todo click on tasks, add animations, change today to only show todos from today, add badges, change how number of todos is calculated to be only for today

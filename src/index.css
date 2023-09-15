@@ -278,6 +278,10 @@ h1>span {
   transition: opacity 0.25s;
 }
 
+#menu-badge:hover > span {
+  background-color: #FAFAFA;
+}
+
 /* -- new task -- */
 
 .new-task-container {

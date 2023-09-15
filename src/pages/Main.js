@@ -60,8 +60,6 @@ export default function Main(props) {
         }
 
         setUpdate(!update)
-
-        //update database
     }
 
     function handleClick() {

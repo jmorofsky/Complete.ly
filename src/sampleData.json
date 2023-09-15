@@ -5,7 +5,7 @@
             "text": "buy groceries",
             "description": "",
             "completed": null,
-            "date": "2023-08-30",
+            "date": "2023-09-15",
             "tags": ["Shopping"],
             "lists": "Personal",
             "subtasks": {}
@@ -15,7 +15,7 @@
             "text": "complete sample json data",
             "description": "",
             "completed": true,
-            "date": "2023-08-30",
+            "date": "2023-09-15",
             "tags": ["Todo Project", "Backend"],
             "lists": "Work",
             "subtasks": {}
@@ -25,7 +25,7 @@
             "text": "learn new language",
             "description": "",
             "completed": null,
-            "date": "2023-08-30",
+            "date": "2023-09-15",
             "tags": ["Education"],
             "lists": "Personal",
             "subtasks": {
@@ -37,7 +37,7 @@
             "text": "i am empty",
             "description": "",
             "completed": false,
-            "date": "2023-08-30",
+            "date": "2023-09-15",
             "tags": [],
             "lists": "",
             "subtasks": {}
