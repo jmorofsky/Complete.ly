@@ -8,6 +8,7 @@ import trashIcon from "../images/trashIcon.png"
 import { Separator } from './Separator'
 import NewTag from './NewTag'
 import MenuNavItem from './ManuNavItem'
+import ListItem from './ListItem'
 
 export default function MainLayout(props) {
     const [lists, setLists] = useState(props.todos.lists[0])
@@ -22,17 +23,9 @@ export default function MainLayout(props) {
         let key = 0
         for (const list in lists) {
             let listName = "/lists/" + list
+            let bgColor = lists[list]
             listArray.push(
-                <NavLink to={listName} key={key} style={{ margin: "10px 0" }}>
-                    <span style={{
-                        backgroundColor: lists[list],
-                        borderRadius: "5px",
-                        fontSize: "15px",
-                        verticalAlign: "1.5px",
-                        marginRight: "10px"
-                    }}>&emsp;&nbsp;</span>
-                    {list}
-                </NavLink>
+                <ListItem list={list} listName={listName} bgColor={bgColor} key={key} todos={props.todos} setTodos={props.setTodos} />
             )
             key++
         }
@@ -73,7 +66,7 @@ export default function MainLayout(props) {
 
         for (let i = 0; i < tagNames.length; i++) {
             tagElements[i] =
-                <div key={i} type="button" className='tag' style={{
+                <div key={i} className='tag' style={{
                     backgroundColor: tagColors[i],
                     width: "fit-content"
                 }} >
@@ -121,4 +114,4 @@ export default function MainLayout(props) {
     )
 }
 
-    // todo delete tags, delete list, click on tasks, subtasks
+// todo delete tags, click on tasks

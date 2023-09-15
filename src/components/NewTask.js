@@ -215,7 +215,7 @@ export default function NewTask(props) {
                         border: "2px solid #EBEBEB",
                         marginRight: "10%"
                     }} />
-                    <input type="submit" className="new-task-submit" />
+                    <input type="submit" value="Save" className="new-task-submit" />
                 </div>
             </form>
         </div>

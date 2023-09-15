@@ -303,7 +303,7 @@ h1>span {
   color: #7B7B7B;
 }
 
-#new-task input::-webkit-input-placeholder {
+#new-task>input::-webkit-input-placeholder {
   opacity: 50%;
 }
 
@@ -406,7 +406,7 @@ h1>span {
   font-weight: 500;
   color: #4F4F51 !important;
   cursor: pointer;
-  transition: opacity 0.25s;
+  transition: all 0.25s;
 }
 
 #new-tag {
@@ -451,6 +451,7 @@ h1>span {
 }
 
 .new-subtask-container input::-webkit-input-placeholder {
+  opacity: 75%;
   color: #989898;
 }
 
