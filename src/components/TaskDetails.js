@@ -155,16 +155,10 @@ export default function TaskDetails(props) {
     }
 
     function handleDelete() {
-        let newTodos = []
-        for(let i = 0; i < todoItems.length; i++) {
-            if(i !== selectedTodo.id - 1) {
-                newTodos.push(todoItems[i])
-            }
-        }
-
-        for(let i = 0; i < newTodos.length; i++) {
-            newTodos[i].id = i + 1
-        }
+        let newTodos = todoItems
+        let updatedTodo = selectedTodo
+        updatedTodo.deleted = true
+        newTodos[selectedTodo.id - 1] = updatedTodo
 
         let finalTodos = { ...props.todos }
         finalTodos["todoItems"] = newTodos

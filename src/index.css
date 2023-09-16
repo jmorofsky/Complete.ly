@@ -531,6 +531,20 @@ h1>span {
 
 /* -- calendar -- */
 
+/* -- trash -- */
+
+.trash-item-x {
+  font-size: 20px;
+  font-weight: 500;
+  float: right;
+  cursor: pointer;
+  position: relative;
+  top: -4px;
+}
+
+.trash-item-x:hover {
+  font-weight: 700;
+}
 
 /* -- error page -- */
 
@@ -553,6 +567,8 @@ h1>span {
   margin: 3px;
   font-size: 18px;
 }
+
+/* -- animations -- */
 
 @keyframes fade {
   0% {

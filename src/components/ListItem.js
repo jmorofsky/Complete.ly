@@ -2,13 +2,6 @@ import React, { useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
 
 export default function ListItem(props) {
-    const SUPPRESSED_WARNINGS = ['Warning: Cannot update a component']
-    console.error = function filterWarnings(msg, ...args) {
-        if (!SUPPRESSED_WARNINGS.some((entry) => msg.includes(entry))) {
-            console.error(msg, ...args)
-        }
-    }
-
     const [isHovering, setIsHovering] = useState(false)
     const [isActive, setIsActive] = useState(false)
     const [todos, setTodos] = useState(props.todos.todoItems)

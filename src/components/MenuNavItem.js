@@ -2,13 +2,6 @@ import React, { useState } from "react"
 import { NavLink } from "react-router-dom"
 
 export default function MenuNavItem(props) {
-    const SUPPRESSED_WARNINGS = ['Warning: Cannot update a component']
-    console.error = function filterWarnings(msg, ...args) {
-        if (!SUPPRESSED_WARNINGS.some((entry) => msg.includes(entry))) {
-            console.error(msg, ...args)
-        }
-    }
-
     const [isActive, setIsActive] = useState(false)
 
     const activeStyle = {
@@ -35,12 +28,21 @@ export default function MenuNavItem(props) {
         let currentDate = `${year}-${month}-${day}`
 
         props.todos.todoItems.forEach(todo => {
-            if (todo.date === currentDate) {
+            if (todo.date === currentDate && todo.deleted === false) {
                 todayTodos++
             }
         })
     } else {
         link = "/" + props.name.toLowerCase()
+    }
+
+    let trashTodos = 0
+    if(props.name === "Trash") {
+        props.todos.todoItems.forEach(todo => {
+            if(todo.deleted === true) {
+                trashTodos++
+            }
+        })
     }
 
     return (
@@ -52,7 +54,7 @@ export default function MenuNavItem(props) {
         >
             <img src={props.img} style={{ width: "15px" }} alt='' />
             &emsp;{props.name}
-            {props.name === "Today" ?
+            {props.name === "Today" || props.name === "Trash" ?
                 isActive ?
                     <span className="badge" style={{
                         float: "right",
@@ -60,14 +62,14 @@ export default function MenuNavItem(props) {
                         transition: "all 0.25s",
                         fontWeight: "500"
                     }}>
-                        {todayTodos}
+                        {props.name === "Today" ? todayTodos : trashTodos}
                     </span>
                     :
                     <span className="badge" style={{
                         float: "right",
                         transition: "all 0.25s"
                     }}>
-                        {todayTodos}
+                        {props.name === "Today" ? todayTodos : trashTodos}
                     </span>
                 :
                 null

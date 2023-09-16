@@ -6,7 +6,6 @@ import sampleData from './sampleData.json'
 import MainLayout from "./components/MainLayout"
 import Main from "./pages/Main"
 import Trash from "./pages/Trash"
-import Archive from "./pages/Archive"
 import Upcoming from "./pages/Upcoming"
 import Calendar from "./pages/Calendar"
 import Error from "./pages/Error"
@@ -19,8 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout todos={todos} setTodos={setTodos} />}>
           <Route index element={<Main todos={todos} setTodos={setTodos} />} />
-          <Route path="trash" element={<Trash />} />
-          <Route path="archive" element={<Archive />} />
+          <Route path="trash" element={<Trash todos={todos} setTodos={setTodos} />} />
           <Route path="upcoming" element={<Upcoming />} />
           <Route path="calendar" element={<Calendar />} />
 

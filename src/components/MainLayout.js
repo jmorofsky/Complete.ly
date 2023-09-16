@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom'
 import upcomingIcon from "../images/upcomingIcon.png"
 import todayIcon from "../images/todayIcon.png"
 import calendarIcon from "../images/calendarIcon.png"
-import archiveIcon from "../images/archiveIcon.png"
 import trashIcon from "../images/trashIcon.png"
 import { Separator } from './Separator'
 import NewTag from './NewTag'
@@ -97,8 +96,7 @@ export default function MainLayout(props) {
                     <MenuNavItem name="Upcoming" img={upcomingIcon} />
                     <MenuNavItem name="Today" img={todayIcon} todos={props.todos} />
                     <MenuNavItem name="Calendar" img={calendarIcon} />
-                    <MenuNavItem name="Archive" img={archiveIcon} />
-                    <MenuNavItem name="Trash" img={trashIcon} />
+                    <MenuNavItem name="Trash" img={trashIcon} todos={props.todos} />
 
                     <Separator />
 
