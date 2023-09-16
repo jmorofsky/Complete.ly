@@ -6,9 +6,16 @@
             "description": "",
             "completed": null,
             "date": "2023-09-15",
-            "tags": ["Shopping"],
+            "tags": [
+                "Shopping"
+            ],
             "lists": "Personal",
-            "subtasks": {}
+            "subtasks": {
+                "eggs": false,
+                "milk": false,
+                "chicken": false,
+                "cereal": false
+            }
         },
         {
             "id": 2,
@@ -16,8 +23,11 @@
             "description": "",
             "completed": true,
             "date": "2023-09-15",
-            "tags": ["Todo Project", "Backend"],
-            "lists": "Work",
+            "tags": [
+                "Complete.ly",
+                "Backend"
+            ],
+            "lists": "Projects",
             "subtasks": {}
         },
         {
@@ -26,33 +36,23 @@
             "description": "",
             "completed": null,
             "date": "2023-09-15",
-            "tags": ["Education"],
-            "lists": "Personal",
+            "tags": [
+                "Education"
+            ],
+            "lists": "Work",
             "subtasks": {
                 "practice": true
             }
-        },
-        {
-            "id": 4,
-            "text": "i am empty",
-            "description": "",
-            "completed": false,
-            "date": "2023-09-15",
-            "tags": [],
-            "lists": "",
-            "subtasks": {}
         }
     ],
-
     "tags": [
         {
             "Shopping": "#FC9E9C",
-            "Todo Project": "#C1E1C1",
+            "Complete.ly": "#C1E1C1",
             "Backend": "#A7C7E7",
             "Education": "#FDFD96"
         }
     ],
-
     "lists": [
         {
             "Personal": "#FE6C6A",

@@ -85,7 +85,27 @@ export default function TodoItem(props) {
     }
 
     function handleClick() {
-        if (props.newTask === true) {
+        if (props.taskSelected) {
+            if (window.confirm("Are you sure you want to discard your changes?")) {
+                props.setSelectedTodo(props.id)
+                document.getElementById("close1").className = "container-close"
+                document.getElementById("close2").className = "container-close"
+                document.getElementById("close3").className = "container-close"
+                document.getElementById("close4").className = "container-close"
+                setTimeout(() => {
+                    props.setTaskSelected(false)
+                    setTimeout(() => {
+                        props.setTaskSelected(true)
+                        setTimeout(() => {
+                            document.getElementById("close1").className = "container-open"
+                            document.getElementById("close2").className = "container-open"
+                            document.getElementById("close3").className = "container-open"
+                            document.getElementById("close4").className = "container-open"
+                        }, 1)
+                    }, 1)
+                }, 250)
+            }
+        } else if (props.newTask) {
             if (window.confirm("Are you sure you want to discard this task?")) {
                 props.setTaskSelected(true)
                 props.setSelectedTodo(props.id)
@@ -94,7 +114,6 @@ export default function TodoItem(props) {
         } else {
             props.setTaskSelected(true)
             props.setSelectedTodo(props.id)
-            props.setNewTask(false)
         }
     }
 

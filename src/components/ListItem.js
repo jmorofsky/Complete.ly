@@ -35,17 +35,19 @@ export default function ListItem(props) {
     function removeList(e) {
         e.preventDefault()
 
-        let listName = e.target.previousSibling.data
-        let newTodos = { ...props.todos }
+        if (window.confirm("Delete this list?")) {
+            let listName = e.target.previousSibling.data
+            let newTodos = { ...props.todos }
 
-        delete newTodos.lists[0][listName]
-        newTodos.todoItems.forEach(todo => {
-            if (todo.lists === listName) {
-                todo.lists = ""
-            }
-        })
+            delete newTodos.lists[0][listName]
+            newTodos.todoItems.forEach(todo => {
+                if (todo.lists === listName) {
+                    todo.lists = ""
+                }
+            })
 
-        props.setTodos(newTodos)
+            props.setTodos(newTodos)
+        }
     }
 
     return (

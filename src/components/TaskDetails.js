@@ -150,7 +150,7 @@ export default function TaskDetails(props) {
             finalTodos["todoItems"] = newTodos
             props.setTodos(finalTodos)
 
-            props.setTaskSelected(false)
+            props.setTask(false)
         }
     }
 
@@ -159,29 +159,35 @@ export default function TaskDetails(props) {
             <h1>Task:</h1>
 
             <form id="new-task" onSubmit={handleSubmit}>
-                <input id="name" type="text" defaultValue={selectedTodo.text} placeholder="Name" required maxLength={30} onKeyDown={(e) => {
-                    if (e.code === "Enter") {
-                        e.preventDefault()
-                    }
-                }} />
-                <br />
-                <textarea id="desc" className="new-task-description" placeholder="Description" defaultValue={selectedTodo.description} maxLength={200} />
-                <br />
+                <div id="close1">
+                    <input id="name" type="text" defaultValue={selectedTodo.text} placeholder="Name" required maxLength={30} onKeyDown={(e) => {
+                        if (e.code === "Enter") {
+                            e.preventDefault()
+                        }
+                    }} />
+                    <br />
+                    <textarea id="desc" className="new-task-description" placeholder="Description" defaultValue={selectedTodo.description} maxLength={200} />
+                    <br />
+                </div>
 
                 <p style={{ marginRight: "76px" }}>List</p>
-                <select name="list" defaultValue={selectedTodo.lists} >
-                    <option value="" />
-                    {listMenu(lists)}
-                </select>
-                <br />
+                <div id="close2" >
+                    <select name="list" defaultValue={selectedTodo.lists} >
+                        <option value="" />
+                        {listMenu(lists)}
+                    </select>
+                    <br />
+                </div>
 
                 <p>Due Date</p>
-                <input type="date" min={selectedTodo.date} max={"2099-12-31"} defaultValue={selectedTodo.date} onKeyDown={(e) => {
-                    if (e.code === "Enter") {
-                        e.preventDefault()
-                    }
-                }} />
-                <br />
+                <div id="close3" >
+                    <input type="date" min={selectedTodo.date} max={"2099-12-31"} defaultValue={selectedTodo.date} onKeyDown={(e) => {
+                        if (e.code === "Enter") {
+                            e.preventDefault()
+                        }
+                    }} />
+                    <br />
+                </div>
 
                 <div className="tags-container" >
                     <p>Tags</p>
@@ -201,7 +207,7 @@ export default function TaskDetails(props) {
                         }
                     }} />
                 </div>
-                <div style={{ marginTop: "10px" }}>
+                <div id="close4" style={{ marginTop: "10px" }}>
                     {subtaskElements(subtasks)}
                 </div>
 

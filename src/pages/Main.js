@@ -41,6 +41,7 @@ export default function Main(props) {
                         numberOfTodos={numberOfTodos}
                         subtasks={todo.subtasks}
                         setTaskSelected={setTaskSelected}
+                        taskSelected={taskSelected}
                         setSelectedTodo={setSelectedTodo}
                         setNewTask={setNewTask}
                         newTask={newTask}

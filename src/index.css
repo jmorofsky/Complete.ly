@@ -309,6 +309,16 @@ h1>span {
   flex-direction: column;
 }
 
+.container-close {
+  opacity: 100%;
+  animation: fade 0.25s forwards;
+}
+
+.container-open {
+  opacity: 0;
+  animation: fadeIn 0.25s forwards;
+}
+
 .new-task-container h1 {
   color: #555555;
 }
@@ -322,11 +332,11 @@ h1>span {
   color: #7B7B7B;
 }
 
-#new-task>input::-webkit-input-placeholder {
+#new-task input::-webkit-input-placeholder {
   opacity: 50%;
 }
 
-#new-task>input[type=text] {
+#close1>input[type=text] {
   font-family: 'Rubik', sans-serif;
   border: 2px solid #EBEBEB;
   border-radius: 10px;
@@ -339,7 +349,7 @@ h1>span {
   width: calc(100% - 25px);
 }
 
-#new-task>input[type="date"] {
+#new-task input[type="date"] {
   font-family: 'Rubik', sans-serif;
   font-size: 18px;
   font-weight: 500;
@@ -349,11 +359,11 @@ h1>span {
   padding: 5px;
 }
 
-#new-task>input[type="date"]:focus {
+#new-task input[type="date"]:focus {
   outline: none;
 }
 
-#new-task>input[type="date"]::-webkit-calendar-picker-indicator {
+#new-task input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 50%;
 }
 
@@ -531,4 +541,24 @@ h1>span {
 .errorContainer>p {
   margin: 3px;
   font-size: 18px;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 100%
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
 }
