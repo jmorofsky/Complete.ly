@@ -86,7 +86,7 @@ body {
   flex-wrap: wrap;
 }
 
-#menu-badge:hover > span {
+#menu-badge:hover>span {
   background-color: #FAFAFA;
 }
 
@@ -286,14 +286,12 @@ h1>span {
   font-weight: 500;
   float: right;
   cursor: pointer;
-  border-radius: 5px;
-  padding: 0 10px 1px 11px;
-  box-shadow: none;
-  transition: all 0.2s;
+  position: relative;
+  top: -7px;
 }
 
 .todo-item-arrow:hover {
-  box-shadow: 0 0 5px #7B7B7B;
+  font-weight: 700;
 }
 
 /* -- new task -- */
@@ -334,6 +332,19 @@ h1>span {
 
 #new-task input::-webkit-input-placeholder {
   opacity: 50%;
+}
+
+#new-task>input[type=text] {
+  font-family: 'Rubik', sans-serif;
+  border: 2px solid #EBEBEB;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  background: transparent;
+  outline: none;
+  padding: 10px;
+  width: calc(100% - 25px);
 }
 
 #close1>input[type=text] {

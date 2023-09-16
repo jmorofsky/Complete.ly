@@ -150,8 +150,27 @@ export default function TaskDetails(props) {
             finalTodos["todoItems"] = newTodos
             props.setTodos(finalTodos)
 
-            props.setTask(false)
+            props.setTaskSelected(false)
         }
+    }
+
+    function handleDelete() {
+        let newTodos = []
+        for(let i = 0; i < todoItems.length; i++) {
+            if(i !== selectedTodo.id - 1) {
+                newTodos.push(todoItems[i])
+            }
+        }
+
+        for(let i = 0; i < newTodos.length; i++) {
+            newTodos[i].id = i + 1
+        }
+
+        let finalTodos = { ...props.todos }
+        finalTodos["todoItems"] = newTodos
+        props.setTodos(finalTodos)
+
+        props.setTaskSelected(false)
     }
 
     return (
@@ -171,7 +190,7 @@ export default function TaskDetails(props) {
                 </div>
 
                 <p style={{ marginRight: "76px" }}>List</p>
-                <div id="close2" >
+                <div id="close2" style={{ display: "inline" }}>
                     <select name="list" defaultValue={selectedTodo.lists} >
                         <option value="" />
                         {listMenu(lists)}
@@ -180,7 +199,7 @@ export default function TaskDetails(props) {
                 </div>
 
                 <p>Due Date</p>
-                <div id="close3" >
+                <div id="close3" style={{ display: "inline" }}>
                     <input type="date" min={selectedTodo.date} max={"2099-12-31"} defaultValue={selectedTodo.date} onKeyDown={(e) => {
                         if (e.code === "Enter") {
                             e.preventDefault()
@@ -212,12 +231,23 @@ export default function TaskDetails(props) {
                 </div>
 
                 <div className="submit-container">
-                    <input type="button" value="Discard Changes" className="new-task-submit" onClick={handleDiscard} style={{
-                        background: "transparent",
-                        border: "2px solid #EBEBEB",
-                        marginRight: "10%"
+                    <input
+                        type="button"
+                        value="Discard Changes"
+                        className="new-task-submit"
+                        onClick={handleDiscard}
+                        style={{
+                            background: "transparent",
+                            border: "2px solid #EBEBEB",
+                            marginRight: "10%"
+                        }} />
+                    <input type="button" value="Delete Task" onClick={handleDelete} className="new-task-submit" style={{
+                        backgroundColor: "#FC9E9C"
                     }} />
-                    <input type="submit" value="Save" className="new-task-submit" />
+                    <input type="submit" value="Save" className="new-task-submit" style={{
+                        width: "100%",
+                        margin: "20px 0 0"
+                    }} />
                 </div>
             </form>
         </div>

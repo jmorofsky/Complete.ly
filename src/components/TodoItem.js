@@ -120,7 +120,7 @@ export default function TodoItem(props) {
     return (
         <>
             <div className="todo-text" style={props.completed ? activeStyle : null}>
-                {props.text}
+                {props.text} 
             </div>
             <span className="todo-item-arrow" onClick={handleClick}>{'>'}</span>
 

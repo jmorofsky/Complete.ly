@@ -2,6 +2,10 @@ import React from 'react'
 
 export default function Trash() {
     return (
-        <h1>this is the trash page</h1>
+        <div className='main-wrapper'>
+            <div id='main'>
+                <h1>Trash</h1>
+            </div>
+        </div>
     )
 }
