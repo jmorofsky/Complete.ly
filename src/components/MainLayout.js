@@ -121,5 +121,3 @@ export default function MainLayout(props) {
         </div>
     )
 }
-
-// todo add animations, delete todos (move to trash), change today to only show todos from today, change how number of todos is calculated to be only for today

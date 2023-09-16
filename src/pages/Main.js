@@ -22,11 +22,15 @@ export default function Main(props) {
     let currentDate = `${year}-${month}-${day}`
 
     let numberOfTodos = 0
+    todoItems.forEach(todo => {
+        if(todo.deleted !== true && todo.date === currentDate) {
+            numberOfTodos++
+        }
+    })
+
     let todoElements = []
     todoItems.forEach(todo => {
         if (todo.deleted !== true && todo.date === currentDate) {
-            numberOfTodos++
-            
             todoElements.push(
                 <div key={todo.id}>
                     <div className="todo-item">

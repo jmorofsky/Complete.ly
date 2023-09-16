@@ -5,7 +5,7 @@
             "text": "buy groceries",
             "description": "",
             "completed": null,
-            "deleted": true,
+            "deleted": false,
             "date": "2023-09-16",
             "tags": [
                 "Shopping"
@@ -23,7 +23,7 @@
             "text": "complete sample json data",
             "description": "",
             "completed": true,
-            "deleted": true,
+            "deleted": false,
             "date": "2023-09-16",
             "tags": [
                 "Complete.ly",
