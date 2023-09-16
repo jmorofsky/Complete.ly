@@ -83,13 +83,6 @@ export default function MainLayout(props) {
             let newTodos = { ...props.todos }
 
             delete newTodos.tags[0][tagName]
-            newTodos.todoItems.forEach(todo => {
-                if (todo.tags.includes(tagName)) {
-                    let index = todo.tags.indexOf(tagName)
-                    todo.tags = todo.tags.splice(index, 1)
-                }
-            })
-
             props.setTodos(newTodos)
         }
     }

@@ -137,7 +137,6 @@ h1>span {
   row-gap: 15px;
   align-items: baseline;
   margin: 10px 0 0 36px;
-  max-height: 30px;
 }
 
 .todo-text {
@@ -287,6 +286,14 @@ h1>span {
   font-weight: 500;
   float: right;
   cursor: pointer;
+  border-radius: 5px;
+  padding: 0 10px 1px 11px;
+  box-shadow: none;
+  transition: all 0.2s;
+}
+
+.todo-item-arrow:hover {
+  box-shadow: 0 0 5px #7B7B7B;
 }
 
 /* -- new task -- */
