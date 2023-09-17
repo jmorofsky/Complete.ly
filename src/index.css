@@ -566,16 +566,17 @@ h1>span {
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-  margin-top: 20%;
 }
 
 .empty-trash-img {
   width: 40%;
+  max-width: 450px;
+  margin-top: min(25%, 150px);
 }
 
 .empty-trash-text {
   margin-left: 40px;
-  padding-top: 10%;
+  padding-top: 100px;
   font-size: 20px;
   color: #333333;
 }
@@ -593,13 +594,18 @@ h1>span {
 
 .errorIcon {
   width: 30%;
-  height: 30%;
+  max-width: 400px;
   margin: 25% auto 0;
+  margin-top: min(25%, 250px);
 }
 
 .errorContainer>p {
   margin: 3px;
   font-size: 18px;
+}
+
+.errorContainer>h1 {
+  margin-bottom: 100px;
 }
 
 /* -- animations -- */

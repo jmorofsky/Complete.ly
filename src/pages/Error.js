@@ -6,7 +6,7 @@ export default function Error() {
         <div className="errorContainer">
             <img src={errorIcon} className="errorIcon" alt='' />
             <h1>404</h1>
-            <p style={{ paddingTop: "20%" }}>Looks like you took a wrong turn.</p>
+            <p>Looks like you took a wrong turn.</p>
             <p>Use the menu buttons to navigate back to other parts of the app.</p>
         </div>
     )
