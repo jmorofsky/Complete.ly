@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TodoItem from '../components/TodoItem'
 import NewTask from '../components/NewTask'
 import TaskDetails from '../components/TaskDetails'
@@ -7,7 +7,9 @@ export default function Main(props) {
     const [newTask, setNewTask] = useState(false)
     const [taskSelected, setTaskSelected] = useState(false)
     const [selectedTodo, setSelectedTodo] = useState(null)
-    let todoItems = props.todos.todoItems
+    const [todoItems, setTodoItems] = useState(props.todos.todoItems)
+
+    useEffect(() => { setTodoItems(props.todos.todoItems) }, [props.todos.todoItems])
 
     const date = new Date()
     let day = date.getDate()
@@ -23,14 +25,21 @@ export default function Main(props) {
 
     let numberOfTodos = 0
     todoItems.forEach(todo => {
-        if(todo.deleted !== true && todo.date === currentDate) {
+        if (todo.deleted !== true && todo.date === currentDate) {
             numberOfTodos++
         }
     })
 
     let todoElements = []
+    let i = 0
+    let isLastTodo = false
     todoItems.forEach(todo => {
         if (todo.deleted !== true && todo.date === currentDate) {
+            i++
+            if (i === numberOfTodos) {
+                isLastTodo = true
+            }
+
             todoElements.push(
                 <div key={todo.id}>
                     <div className="todo-item">
@@ -63,6 +72,7 @@ export default function Main(props) {
                             setSelectedTodo={setSelectedTodo}
                             setNewTask={setNewTask}
                             newTask={newTask}
+                            isLastTodo={isLastTodo}
                         />
                     </div>
                 </div>

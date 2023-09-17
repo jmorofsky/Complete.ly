@@ -27,6 +27,13 @@ export default function Trash(props) {
 
     let trashElements = []
     deletedTodos.forEach(todo => {
+        let isLastTodo = true
+        deletedTodos.forEach(todo2 => {
+            if(todo2.id > todo.id) {
+                isLastTodo = false
+            }
+        })
+
         let tagElements = []
         let key = 0
         for (const tag in tagArray[0]) {
@@ -133,7 +140,7 @@ export default function Trash(props) {
                         null
                     }
 
-                    {todo.id === deletedTodos.length ? null : <Separator />}
+                    {isLastTodo ? null : <Separator />}
                 </div>
             </div>
         )
