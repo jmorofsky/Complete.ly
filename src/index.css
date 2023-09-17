@@ -561,6 +561,25 @@ h1>span {
   transform-origin: center;
 }
 
+.empty-trash {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  margin-top: 20%;
+}
+
+.empty-trash-img {
+  width: 40%;
+}
+
+.empty-trash-text {
+  margin-left: 40px;
+  padding-top: 10%;
+  font-size: 20px;
+  color: #333333;
+}
+
 /* -- error page -- */
 
 .errorContainer {

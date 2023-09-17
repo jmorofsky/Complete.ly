@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Separator } from '../components/Separator'
+import emptyTrashImage from '../images/emptyTrash.png'
 
 export default function Trash(props) {
     const [todoItems, setTodoItems] = useState(props.todos.todoItems)
@@ -193,7 +194,13 @@ export default function Trash(props) {
                     }>{numberOfTodos}</span>
                 </h1>
 
-                {trashElements}
+                {trashElements.length ? trashElements :
+                    <div className='empty-trash'>
+                        <img src={emptyTrashImage} className='empty-trash-img' />
+                        <p className='empty-trash-text'>All clear. For now...</p>
+                    </div>
+                }
+
             </div>
         </div>
     )
