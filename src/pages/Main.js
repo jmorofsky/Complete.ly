@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import TodoItem from '../components/TodoItem'
 import NewTask from '../components/NewTask'
 import TaskDetails from '../components/TaskDetails'
+import { TodoContext } from '..'
 
-export default function Main(props) {
+export default function Main() {
+    const {
+        todos,
+        setTodos
+    } = useContext(TodoContext)
+
     const [newTask, setNewTask] = useState(false)
     const [taskSelected, setTaskSelected] = useState(false)
     const [selectedTodo, setSelectedTodo] = useState(null)
-    const [todoItems, setTodoItems] = useState(props.todos.todoItems)
+    const [todoItems, setTodoItems] = useState(todos.todoItems)
 
-    useEffect(() => { setTodoItems(props.todos.todoItems) }, [props.todos.todoItems])
+    useEffect(() => { setTodoItems(todos.todoItems) }, [todos.todoItems])
 
     const date = new Date()
     let day = date.getDate()
@@ -61,9 +67,9 @@ export default function Main(props) {
                             id={todo.id}
                             completed={todo.completed}
                             text={todo.text}
-                            tagArray={props.todos.tags}
+                            tagArray={todos.tags}
                             tags={todo.tags}
-                            listArray={props.todos.lists}
+                            listArray={todos.lists}
                             lists={todo.lists}
                             numberOfTodos={numberOfTodos}
                             subtasks={todo.subtasks}
@@ -91,9 +97,9 @@ export default function Main(props) {
             todoItems[id].completed = null
         }
 
-        let updatedTodos = { ...props.todos }
+        let updatedTodos = { ...todos }
         updatedTodos.todoItems = todoItems
-        props.setTodos(updatedTodos)
+        setTodos(updatedTodos)
     }
 
     function handleClick() {
@@ -137,17 +143,12 @@ export default function Main(props) {
             </div>
 
             {newTask ?
-                <NewTask todos={props.todos} setTodos={props.setTodos} setNewTask={setNewTask} />
+                <NewTask setNewTask={setNewTask} />
                 : null
             }
 
             {taskSelected ?
-                <TaskDetails
-                    id={selectedTodo}
-                    setTaskSelected={setTaskSelected}
-                    todos={props.todos}
-                    setTodos={props.setTodos}
-                />
+                <TaskDetails id={selectedTodo} setTaskSelected={setTaskSelected} />
                 : null
             }
         </div>

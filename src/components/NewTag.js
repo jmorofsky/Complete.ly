@@ -1,6 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
+import { TodoContext } from ".."
 
 export default function NewTag(props) {
+    const {
+        todos,
+        setTodos
+    } = useContext(TodoContext)
+
     function handleTagChange(e) {
         const hide = document.getElementById('hide')
         const txt = e.target
@@ -26,10 +32,10 @@ export default function NewTag(props) {
             props.setTags(tagsList)
 
             //add new tag to data
-            let newTodos = { ...props.todos }
+            let newTodos = { ...todos }
             let tagsListArray = [tagsList]
             newTodos.tags = tagsListArray
-            props.setTodos(newTodos)
+            setTodos(newTodos)
         } else {
             alert("Tag already exists!")
         }

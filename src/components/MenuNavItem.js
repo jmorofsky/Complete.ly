@@ -1,7 +1,13 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { NavLink } from "react-router-dom"
+import { TodoContext } from ".."
 
 export default function MenuNavItem(props) {
+    const {
+        todos,
+        setTodos
+    } = useContext(TodoContext)
+
     const [isActive, setIsActive] = useState(false)
 
     const activeStyle = {
@@ -27,7 +33,7 @@ export default function MenuNavItem(props) {
         let year = date.getFullYear()
         let currentDate = `${year}-${month}-${day}`
 
-        props.todos.todoItems.forEach(todo => {
+        todos.todoItems.forEach(todo => {
             if (todo.date === currentDate && todo.deleted === false) {
                 todayTodos++
             }
@@ -38,7 +44,7 @@ export default function MenuNavItem(props) {
 
     let trashTodos = 0
     if(props.name === "Trash") {
-        props.todos.todoItems.forEach(todo => {
+        todos.todoItems.forEach(todo => {
             if(todo.deleted === true) {
                 trashTodos++
             }

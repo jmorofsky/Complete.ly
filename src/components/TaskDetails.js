@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import NewTag from "./NewTag"
+import { TodoContext } from ".."
 
 export default function TaskDetails(props) {
-    const [todoItems] = useState(props.todos.todoItems)
+    const {
+        todos,
+        setTodos
+    } = useContext(TodoContext)
+
+    const [todoItems] = useState(todos.todoItems)
     const selectedTodo = todoItems[props.id - 1]
-    const [lists, setLists] = useState(Object.keys(props.todos.lists[0]))
-    const [tags, setTags] = useState(props.todos.tags[0])
+    const [lists, setLists] = useState(Object.keys(todos.lists[0]))
+    const [tags, setTags] = useState(todos.tags[0])
     const [subtasks, setSubtasks] = useState(Object.keys(selectedTodo.subtasks))
 
     useEffect(() => {
-        setLists(Object.keys(props.todos.lists[0]))
-        setTags(props.todos.tags[0])
-    }, [props.todos.lists, props.todos.tags])
+        setLists(Object.keys(todos.lists[0]))
+        setTags(todos.tags[0])
+    }, [todos.lists, todos.tags])
 
     function listMenu(lists) {
         let listElements = []
@@ -146,9 +152,9 @@ export default function TaskDetails(props) {
                 subtasks: finalSubtasks
             }
 
-            let finalTodos = { ...props.todos }
+            let finalTodos = { ...todos }
             finalTodos["todoItems"] = newTodos
-            props.setTodos(finalTodos)
+            setTodos(finalTodos)
 
             props.setTaskSelected(false)
         }
@@ -160,9 +166,9 @@ export default function TaskDetails(props) {
         updatedTodo.deleted = true
         newTodos[selectedTodo.id - 1] = updatedTodo
 
-        let finalTodos = { ...props.todos }
+        let finalTodos = { ...todos }
         finalTodos["todoItems"] = newTodos
-        props.setTodos(finalTodos)
+        setTodos(finalTodos)
 
         props.setTaskSelected(false)
     }
@@ -206,7 +212,7 @@ export default function TaskDetails(props) {
                     <p>Tags</p>
                     <div className="tags-menu" >
                         {tagsMenu(tags)}
-                        <NewTag tags={tags} setTags={setTags} todos={props.todos} setTodos={props.setTodos} />
+                        <NewTag tags={tags} setTags={setTags} />
                         <br />
                     </div>
                 </div>

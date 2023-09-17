@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, createContext } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -9,26 +9,31 @@ import Trash from "./pages/Trash"
 import Upcoming from "./pages/Upcoming"
 import Calendar from "./pages/Calendar"
 import Error from "./pages/Error"
+import Listview from './pages/Listview'
+
+export const TodoContext = createContext(null)
 
 function App() {
   const [todos, setTodos] = useState(sampleData)
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainLayout todos={todos} setTodos={setTodos} />}>
-          <Route index element={<Main todos={todos} setTodos={setTodos} />} />
-          <Route path="trash" element={<Trash todos={todos} setTodos={setTodos} />} />
-          <Route path="upcoming" element={<Upcoming />} />
-          <Route path="calendar" element={<Calendar />} />
+    <TodoContext.Provider value={{todos, setTodos}} >
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<Main />} />
+            <Route path="trash" element={<Trash />} />
+            <Route path="upcoming" element={<Upcoming />} />
+            <Route path="calendar" element={<Calendar />} />
 
-          <Route path="lists" element={<></>} />
-          <Route path="lists/:listName" element={<></>} />
+            <Route path="lists" element={<></>} />
+            <Route path="lists/:listName" element={<Listview />} />
 
-          <Route path=":404" element={<Error />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+            <Route path=":404" element={<Error />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </TodoContext.Provider>
   )
 }
 

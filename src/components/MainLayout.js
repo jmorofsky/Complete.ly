@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Outlet } from 'react-router-dom'
 import upcomingIcon from "../images/upcomingIcon.png"
 import todayIcon from "../images/todayIcon.png"
@@ -8,14 +8,20 @@ import { Separator } from './Separator'
 import NewTag from './NewTag'
 import MenuNavItem from './MenuNavItem'
 import ListItem from './ListItem'
+import { TodoContext } from '..'
 
-export default function MainLayout(props) {
-    const [lists, setLists] = useState(props.todos.lists[0])
-    const [tags, setTags] = useState(props.todos.tags[0])
+export default function MainLayout() {
+    const {
+        todos,
+        setTodos
+    } = useContext(TodoContext)
+
+    const [lists, setLists] = useState(todos.lists[0])
+    const [tags, setTags] = useState(todos.tags[0])
 
     useEffect(() => {
-        setTags(props.todos.tags[0])
-    }, [props.todos.tags])
+        setTags(todos.tags[0])
+    }, [todos.tags])
 
     function listMenu(lists) {
         let listArray = []
@@ -24,7 +30,7 @@ export default function MainLayout(props) {
             let listName = "/lists/" + list
             let bgColor = lists[list]
             listArray.push(
-                <ListItem list={list} listName={listName} bgColor={bgColor} key={key} todos={props.todos} setTodos={props.setTodos} />
+                <ListItem list={list} listName={listName} bgColor={bgColor} key={key} />
             )
             key++
         }
@@ -52,9 +58,9 @@ export default function MainLayout(props) {
             setLists(newLists)
             e.target[1].value = ""
 
-            let newTodos = { ...props.todos }
+            let newTodos = { ...todos }
             newTodos.lists = [newLists]
-            props.setTodos(newTodos)
+            setTodos(newTodos)
         }
     }
 
@@ -79,10 +85,10 @@ export default function MainLayout(props) {
     function removeTag(e) {
         if (window.confirm("Delete this tag?")) {
             let tagName = e.target.textContent
-            let newTodos = { ...props.todos }
+            let newTodos = { ...todos }
 
             delete newTodos.tags[0][tagName]
-            props.setTodos(newTodos)
+            setTodos(newTodos)
         }
     }
 
@@ -94,9 +100,9 @@ export default function MainLayout(props) {
 
                     <p>TASKS</p>
                     <MenuNavItem name="Upcoming" img={upcomingIcon} />
-                    <MenuNavItem name="Today" img={todayIcon} todos={props.todos} />
+                    <MenuNavItem name="Today" img={todayIcon} />
+                    <MenuNavItem name="Trash" img={trashIcon} />
                     <MenuNavItem name="Calendar" img={calendarIcon} />
-                    <MenuNavItem name="Trash" img={trashIcon} todos={props.todos} />
 
                     <Separator />
 
@@ -112,7 +118,7 @@ export default function MainLayout(props) {
                     <p>TAGS</p>
                     <div className='menu-tags-container'>
                         {tagsMenu(tags)}
-                        <NewTag tags={tags} setTags={setTags} todos={props.todos} setTodos={props.setTodos} />
+                        <NewTag tags={tags} setTags={setTags} />
                     </div>
                 </div>
 
@@ -121,3 +127,4 @@ export default function MainLayout(props) {
         </div>
     )
 }
+// todo: upcoming, calendar, click on lists, create component for todo elements

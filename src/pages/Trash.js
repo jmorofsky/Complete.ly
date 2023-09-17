@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Separator } from '../components/Separator'
 import emptyTrashImage from '../images/emptyTrash.png'
+import { TodoContext } from '..'
 
-export default function Trash(props) {
-    const [todoItems, setTodoItems] = useState(props.todos.todoItems)
-    const [tagArray] = useState(props.todos.tags)
-    const [listArray] = useState(props.todos.lists)
+export default function Trash() {
+    const {
+        todos,
+        setTodos
+    } = useContext(TodoContext)
+
+    const [todoItems, setTodoItems] = useState(todos.todoItems)
+    const [tagArray] = useState(todos.tags)
+    const [listArray] = useState(todos.lists)
 
     useEffect(() => {
-        setTodoItems(props.todos.todoItems)
-    }, [props.todos.todoItems])
+        setTodoItems(todos.todoItems)
+    }, [todos.todoItems])
 
     const activeStyle = {
         opacity: "50%",
@@ -162,9 +168,9 @@ export default function Trash(props) {
                 newTodos[i].id = i + 1
             }
 
-            let finalTodos = { ...props.todos }
+            let finalTodos = { ...todos }
             finalTodos["todoItems"] = newTodos
-            props.setTodos(finalTodos)
+            setTodos(finalTodos)
         }
     }
 
@@ -177,9 +183,9 @@ export default function Trash(props) {
                 }
             })
 
-            let finalTodos = { ...props.todos }
+            let finalTodos = { ...todos }
             finalTodos["todoItems"] = newTodos
-            props.setTodos(finalTodos)
+            setTodos(finalTodos)
         }
     }
 

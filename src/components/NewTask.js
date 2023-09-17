@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import NewTag from "./NewTag"
+import { TodoContext } from ".."
 
 export default function NewTask(props) {
-    const [lists, setLists] = useState(Object.keys(props.todos.lists[0]))
-    const [tags, setTags] = useState(props.todos.tags[0])
+    const {
+        todos,
+        setTodos
+    } = useContext(TodoContext)
+
+    const [lists, setLists] = useState(Object.keys(todos.lists[0]))
+    const [tags, setTags] = useState(todos.tags[0])
     const [subtasks, setSubtasks] = useState([])
-    const [todoItems] = useState(props.todos.todoItems)
+    const [todoItems] = useState(todos.todoItems)
 
     useEffect(() => {
-        setLists(Object.keys(props.todos.lists[0]))
-        setTags(props.todos.tags[0])
-    }, [props.todos.lists, props.todos.tags])
+        setLists(Object.keys(todos.lists[0]))
+        setTags(todos.tags[0])
+    }, [todos.lists, todos.tags])
 
     const date = new Date()
     let day = date.getDate()
@@ -150,9 +156,9 @@ export default function NewTask(props) {
                 subtasks: finalSubtasks
             })
 
-            let finalTodos = { ...props.todos }
+            let finalTodos = { ...todos }
             finalTodos["todoItems"] = newTodos
-            props.setTodos(finalTodos)
+            setTodos(finalTodos)
 
             props.setNewTask(false)
         }
@@ -191,7 +197,7 @@ export default function NewTask(props) {
                     <p>Tags</p>
                     <div className="tags-menu" >
                         {tagsMenu(tags)}
-                        <NewTag tags={tags} setTags={setTags} todos={props.todos} setTodos={props.setTodos} />
+                        <NewTag tags={tags} setTags={setTags} />
                         <br />
                     </div>
                 </div>

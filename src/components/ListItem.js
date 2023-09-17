@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useContext } from "react"
 import { NavLink } from "react-router-dom"
+import { TodoContext } from ".."
 
 export default function ListItem(props) {
+    const {
+        todos,
+        setTodos
+    } = useContext(TodoContext)
+
     const [isHovering, setIsHovering] = useState(false)
     const [isActive, setIsActive] = useState(false)
-    const [todos, setTodos] = useState(props.todos.todoItems)
-
-    useEffect(() => {
-        setTodos(props.todos.todoItems)
-    }, [props.todos.todoItems])
+    const [todoItems] = useState(todos.todoItems)
 
     const activeStyle = {
         fontWeight: "700",
@@ -19,7 +21,7 @@ export default function ListItem(props) {
     }
 
     let listNumber = 0
-    todos.forEach(todo => {
+    todoItems.forEach(todo => {
         if (todo.lists === props.list) {
             listNumber++
         }
@@ -30,7 +32,7 @@ export default function ListItem(props) {
 
         if (window.confirm("Delete this list?")) {
             let listName = e.target.previousSibling.data
-            let newTodos = { ...props.todos }
+            let newTodos = { ...todos }
 
             delete newTodos.lists[0][listName]
             newTodos.todoItems.forEach(todo => {
@@ -39,7 +41,7 @@ export default function ListItem(props) {
                 }
             })
 
-            props.setTodos(newTodos)
+            setTodos(newTodos)
         }
     }
 
