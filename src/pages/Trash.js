@@ -29,7 +29,7 @@ export default function Trash(props) {
     deletedTodos.forEach(todo => {
         let isLastTodo = true
         deletedTodos.forEach(todo2 => {
-            if(todo2.id > todo.id) {
+            if (todo2.id > todo.id) {
                 isLastTodo = false
             }
         })
@@ -139,6 +139,7 @@ export default function Trash(props) {
                         :
                         null
                     }
+                    <span className='trash-restore' onClick={handleRestore} id={todo.id}>⭯</span>
 
                     {isLastTodo ? null : <Separator />}
                 </div>
@@ -147,21 +148,38 @@ export default function Trash(props) {
     })
 
     function handleClick(e) {
-        // permanently delete
-        let newTodos = []
-        for(let i = 0; i < todoItems.length; i++) {
-            if(i !== e.target.id - 1) {
-                newTodos.push(todoItems[i])
+        if (window.confirm("Permanently delete this task?")) {
+            // permanently delete
+            let newTodos = []
+            for (let i = 0; i < todoItems.length; i++) {
+                if (i !== e.target.id - 1) {
+                    newTodos.push(todoItems[i])
+                }
             }
-        }
 
-        for(let i = 0; i < newTodos.length; i++) {
-            newTodos[i].id = i + 1
-        }
+            for (let i = 0; i < newTodos.length; i++) {
+                newTodos[i].id = i + 1
+            }
 
-        let finalTodos = { ...props.todos }
-        finalTodos["todoItems"] = newTodos
-        props.setTodos(finalTodos)
+            let finalTodos = { ...props.todos }
+            finalTodos["todoItems"] = newTodos
+            props.setTodos(finalTodos)
+        }
+    }
+
+    function handleRestore(e) {
+        if (window.confirm("Restore this task?")) {
+            let newTodos = [...todoItems]
+            newTodos.forEach(todo => {
+                if (todo.id === parseInt(e.target.id)) {
+                    todo.deleted = false
+                }
+            })
+
+            let finalTodos = { ...props.todos }
+            finalTodos["todoItems"] = newTodos
+            props.setTodos(finalTodos)
+        }
     }
 
     return (

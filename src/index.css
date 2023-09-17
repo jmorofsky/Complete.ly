@@ -546,6 +546,21 @@ h1>span {
   font-weight: 700;
 }
 
+.trash-restore {
+  cursor: pointer;
+  float: right;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+  top: -50px;
+  right: -2.5px;
+}
+
+.trash-restore:hover {
+  transform: scale(1.1);
+  transform-origin: center;
+}
+
 /* -- error page -- */
 
 .errorContainer {
