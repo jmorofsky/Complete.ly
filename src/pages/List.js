@@ -21,7 +21,7 @@ export default function List() {
 
     let numberOfTodos = 0
     todos.todoItems.forEach(todo => {
-        if (todo.lists === listName)
+        if (todo.lists === listName && todo.deleted === false)
             numberOfTodos++
     })
 
