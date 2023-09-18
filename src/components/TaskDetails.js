@@ -146,6 +146,7 @@ export default function TaskDetails(props) {
                 text: e.target[0].value,
                 description: e.target[1].value,
                 completed: selectedTodo.completed,
+                deleted: false,
                 date: e.target[3].value,
                 tags: formattedTags,
                 lists: list,
