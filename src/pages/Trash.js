@@ -202,7 +202,7 @@ export default function Trash() {
 
                 {trashElements.length ? trashElements :
                     <div className='empty-trash'>
-                        <img src={emptyTrashImage} className='empty-trash-img' />
+                        <img src={emptyTrashImage} className='empty-trash-img' alt='' />
                         <p className='empty-trash-text'>All clear. For now...</p>
                     </div>
                 }

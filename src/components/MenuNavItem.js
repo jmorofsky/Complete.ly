@@ -4,8 +4,7 @@ import { TodoContext } from ".."
 
 export default function MenuNavItem(props) {
     const {
-        todos,
-        setTodos
+        todos
     } = useContext(TodoContext)
 
     const [isActive, setIsActive] = useState(false)

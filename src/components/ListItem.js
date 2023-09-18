@@ -10,7 +10,7 @@ export default function ListItem(props) {
 
     const [isHovering, setIsHovering] = useState(false)
     const [isActive, setIsActive] = useState(false)
-    const [todoItems, setTodoItems] = useState(todos.todoItems)
+    const [todoItems] = useState(todos.todoItems)
 
     const activeStyle = {
         fontWeight: "700",

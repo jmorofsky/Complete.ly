@@ -103,7 +103,7 @@ export default function List() {
                 {listElements.length ?
                     listElements :
                     <div className='empty-trash'>
-                        <img src={emptyListImage} className='empty-trash-img' />
+                        <img src={emptyListImage} className='empty-trash-img' alt="" />
                         <p className='empty-list-text'>This list is empty!</p>
                     </div>
                 }
