@@ -10,7 +10,7 @@ export default function ListItem(props) {
 
     const [isHovering, setIsHovering] = useState(false)
     const [isActive, setIsActive] = useState(false)
-    const [todoItems] = useState(todos.todoItems)
+    const [todoItems, setTodoItems] = useState(todos.todoItems)
 
     const activeStyle = {
         fontWeight: "700",
@@ -22,7 +22,7 @@ export default function ListItem(props) {
 
     let listNumber = 0
     todoItems.forEach(todo => {
-        if (todo.lists === props.list) {
+        if (todo.lists === props.list && todo.deleted === false) {
             listNumber++
         }
     })

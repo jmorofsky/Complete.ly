@@ -9,7 +9,7 @@ import Trash from "./pages/Trash"
 import Upcoming from "./pages/Upcoming"
 import Calendar from "./pages/Calendar"
 import Error from "./pages/Error"
-import Listview from './pages/Listview'
+import List from './pages/List'
 
 export const TodoContext = createContext(null)
 
@@ -27,7 +27,7 @@ function App() {
             <Route path="calendar" element={<Calendar />} />
 
             <Route path="lists" element={<></>} />
-            <Route path="lists/:listName" element={<Listview />} />
+            <Route path="lists/:listName" element={<List />} />
 
             <Route path=":404" element={<Error />} />
           </Route>

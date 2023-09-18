@@ -127,4 +127,4 @@ export default function MainLayout() {
         </div>
     )
 }
-// todo: upcoming, calendar, click on lists, create component for todo elements
+// todo: upcoming, calendar, click on lists

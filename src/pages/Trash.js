@@ -206,7 +206,6 @@ export default function Trash() {
                         <p className='empty-trash-text'>All clear. For now...</p>
                     </div>
                 }
-
             </div>
         </div>
     )
