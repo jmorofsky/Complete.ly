@@ -4,6 +4,7 @@ import { TodoContext } from ".."
 import TodoItem from "../components/TodoItem"
 import TaskDetails from "../components/TaskDetails"
 import emptyListImage from "../images/emptyList.png"
+import Error from "./Error"
 
 export default function List() {
     const listName = useParams().listName
@@ -12,6 +13,11 @@ export default function List() {
         todos,
         setTodos
     } = useContext(TodoContext)
+
+    let listExists = false
+    if (listName in todos.lists[0]) {
+        listExists = true
+    }
 
     const [todoItems, setTodoItems] = useState(todos.todoItems)
     const [taskSelected, setTaskSelected] = useState(false)
@@ -66,6 +72,8 @@ export default function List() {
                             taskSelected={taskSelected}
                             setSelectedTodo={setSelectedTodo}
                             isLastTodo={isLastTodo}
+                            isList={true}
+                            date={todo.date}
                         />
                     </div>
                 </div>
@@ -90,29 +98,30 @@ export default function List() {
     }
 
     return (
-        <div className="main-wrapper">
-            <div id="main">
-                <h1>{listName}
-                    <span style={numberOfTodos === 1 ?
-                        { paddingRight: "23px", paddingLeft: "19px", marginLeft: "83px" }
-                        :
-                        { marginLeft: "83px" }
-                    }>{numberOfTodos}</span>
-                </h1>
+        listExists ?
+            <div className="main-wrapper">
+                <div id="main">
+                    <h1>{listName}
+                        <span style={numberOfTodos === 1 ?
+                            { paddingRight: "23px", paddingLeft: "19px", marginLeft: "83px" }
+                            :
+                            { marginLeft: "83px" }
+                        }>{numberOfTodos}</span>
+                    </h1>
 
-                {listElements.length ?
-                    listElements :
-                    <div className='empty-trash'>
-                        <img src={emptyListImage} className='empty-trash-img' alt="" />
-                        <p className='empty-list-text'>This list is empty!</p>
-                    </div>
+                    {listElements.length ?
+                        listElements :
+                        <div className='empty-trash'>
+                            <img src={emptyListImage} className='empty-trash-img' alt="" />
+                            <p className='empty-list-text'>This list is empty!</p>
+                        </div>
+                    }
+                </div>
+
+                {taskSelected ?
+                    <TaskDetails id={selectedTodo} setTaskSelected={setTaskSelected} />
+                    : null
                 }
-            </div>
-
-            {taskSelected ?
-                <TaskDetails id={selectedTodo} setTaskSelected={setTaskSelected} />
-                : null
-            }
-        </div>
+            </div> : <Error />
     )
 }

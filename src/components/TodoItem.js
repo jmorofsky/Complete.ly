@@ -1,5 +1,6 @@
 import React from "react"
 import { Separator } from "./Separator"
+import dateIcon from "../images/dateIcon.png"
 
 export default function TodoItem(props) {
     let isLastTodo = props.isLastTodo
@@ -118,7 +119,13 @@ export default function TodoItem(props) {
         <>
             <div className="todo-text" style={props.completed ? activeStyle : null}>
                 {props.text}
+                {props.isList ? <img src={dateIcon} alt='' className='date-img' /> : null}
             </div>
+            {props.isList ? <span style={props.completed ?
+                { fontSize: "16px", fontWeight: "100", opacity: "50%" }
+                :
+                { fontSize: "16px", fontWeight: "100" }
+            }>{props.date}</span> : null}
             <span className="todo-item-arrow" onClick={handleClick}>{'>'}</span>
 
             {listElement !== "" || tagElements.length !== 0 || subtaskElement !== null ?

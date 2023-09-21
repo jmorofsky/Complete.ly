@@ -96,7 +96,7 @@ export default function MainLayout() {
         <div className='background'>
             <div className='app-container'>
                 <div className='menu-container'>
-                    <h1 className='menu-title'>Menu</h1>
+                    <h1 className='menu-title'>Complete.ly</h1>
 
                     <p>TASKS</p>
                     <MenuNavItem name="Upcoming" img={upcomingIcon} />
@@ -127,4 +127,4 @@ export default function MainLayout() {
         </div>
     )
 }
-// todo: upcoming, calendar, click on lists
+// todo: upcoming, calendar, make responsive

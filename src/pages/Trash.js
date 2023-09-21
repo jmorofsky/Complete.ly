@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Separator } from '../components/Separator'
 import emptyTrashImage from '../images/emptyTrash.png'
 import { TodoContext } from '..'
+import dateIcon from "../images/dateIcon.png"
 
 export default function Trash() {
     const {
@@ -131,7 +132,13 @@ export default function Trash() {
 
                     <div className="todo-text" style={todo.completed ? activeStyle : null}>
                         {todo.text}
+                        <img src={dateIcon} alt='' className='date-img' />
                     </div>
+                    <span style={todo.completed ?
+                        { fontSize: "16px", fontWeight: "100", opacity: "50%" }
+                        :
+                        { fontSize: "16px", fontWeight: "100" }
+                    }>{todo.date}</span>
                     <span className="trash-item-x" id={todo.id} onClick={handleClick}>X</span>
 
                     {listElement !== "" || tagElements.length !== 0 || subtaskElement !== null ?
