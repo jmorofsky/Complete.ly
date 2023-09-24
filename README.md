@@ -13,7 +13,7 @@ Complete.ly is a web application developed entirely by myself, Jason Morofsky.
 
 It was created using React and React Router. Sample JSON data is loaded into context when the app is started, mimicing data retreived from an api call to a database. All further work done with the data is performed on the "client side"; that is, no additional "api calls" are made back to the sample data. 
 
-In a real-world scenario, whenever the user made any changes to the, it would need to be sent back to the database. Otherwise, the next time the user visited the page, all their changes would be lost. This is currently how the app behaves, since there is no backend implementation.
+In a real-world scenario, whenever the user made any changes, the data would need to be sent back to the database. Otherwise, the next time the user visited the page, all their changes would be lost. This is currently how the app behaves, since there is no backend implementation.
 
 Still, all the behavior of the app is functional and works until the page is refreshed, upon which the data is reset back to default. React router allows us to navigate to different pages on the site without causing a refresh, letting us to hold onto any changes made by the user.
 
