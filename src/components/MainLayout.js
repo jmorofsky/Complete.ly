@@ -125,4 +125,4 @@ export default function MainLayout() {
         </div>
     )
 }
-// todo: make responsive, sample data date update
+// todo: make responsive

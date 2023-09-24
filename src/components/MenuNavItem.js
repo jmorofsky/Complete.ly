@@ -33,7 +33,7 @@ export default function MenuNavItem(props) {
         let currentDate = `${year}-${month}-${day}`
 
         todos.todoItems.forEach(todo => {
-            if (todo.date === currentDate && todo.deleted === false) {
+            if (todo.date === currentDate || todo.date === "2023-01-01" && todo.deleted === false) {
                 todayTodos++
             }
         })
@@ -72,7 +72,7 @@ export default function MenuNavItem(props) {
         }
 
         todos.todoItems.forEach(todo => {
-            if (dates.includes(todo.date) && todo.deleted === false) {
+            if (dates.includes(todo.date) || todo.date === "2023-01-01" && todo.deleted === false) {
                 upcomingTodos++
             }
         })

@@ -31,7 +31,7 @@ export default function Main() {
 
     let numberOfTodos = 0
     todoItems.forEach(todo => {
-        if (todo.deleted !== true && todo.date === currentDate) {
+        if (todo.deleted !== true || todo.date === "2023-01-01" && todo.date === currentDate) {
             numberOfTodos++
         }
     })
@@ -40,7 +40,7 @@ export default function Main() {
     let i = 0
     let isLastTodo = false
     todoItems.forEach(todo => {
-        if (todo.deleted !== true && todo.date === currentDate) {
+        if (todo.deleted !== true || todo.date === "2023-01-01" && todo.date === currentDate) {
             i++
             if (i === numberOfTodos) {
                 isLastTodo = true

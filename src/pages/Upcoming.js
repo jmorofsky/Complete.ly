@@ -67,6 +67,8 @@ export default function Upcoming() {
         todoItems.forEach(todo => {
             if (todo.date === dates[i] && todo.deleted === false) {
                 todosAtDate.push(todo)
+            } else if (i === 0 && todo.date === "2023-01-01") {
+                todosAtDate.push(todo)
             }
         })
 
