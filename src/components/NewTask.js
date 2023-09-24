@@ -180,7 +180,7 @@ export default function NewTask(props) {
 
                 <p style={{ marginRight: "76px" }}>List</p>
                 <select name="list" >
-                    <option value="" />
+                    <option value="" >None</option>
                     {listMenu(lists)}
                 </select>
                 <br />

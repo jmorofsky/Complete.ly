@@ -42,10 +42,38 @@ export default function MenuNavItem(props) {
     }
 
     let trashTodos = 0
-    if(props.name === "Trash") {
+    if (props.name === "Trash") {
         todos.todoItems.forEach(todo => {
-            if(todo.deleted === true) {
+            if (todo.deleted === true) {
                 trashTodos++
+            }
+        })
+    }
+
+    let upcomingTodos = 0
+    if (props.name === "Upcoming") {
+        let dates = []
+        for (let i = 0; i < 7; i++) {
+            let date = new Date()
+            date.setDate(date.getDate() + i);
+
+            let day = date.getDate()
+            if (day < 10) {
+                day = "0" + day
+            }
+            let month = date.getMonth() + 1
+            if (month < 10) {
+                month = "0" + month
+            }
+            let year = date.getFullYear()
+            let currentDate = `${year}-${month}-${day}`
+
+            dates.push(currentDate)
+        }
+
+        todos.todoItems.forEach(todo => {
+            if (dates.includes(todo.date) && todo.deleted === false) {
+                upcomingTodos++
             }
         })
     }
@@ -59,7 +87,7 @@ export default function MenuNavItem(props) {
         >
             <img src={props.img} style={{ width: "15px" }} alt='' />
             &emsp;{props.name}
-            {props.name === "Today" || props.name === "Trash" ?
+            {props.name === "Today" || props.name === "Trash" || props.name === "Upcoming" ?
                 isActive ?
                     <span className="badge" style={{
                         float: "right",
@@ -67,14 +95,16 @@ export default function MenuNavItem(props) {
                         transition: "all 0.25s",
                         fontWeight: "500"
                     }}>
-                        {props.name === "Today" ? todayTodos : trashTodos}
+                        {props.name === "Today" ? todayTodos : props.name === "Trash" ?
+                            trashTodos : upcomingTodos}
                     </span>
                     :
                     <span className="badge" style={{
                         float: "right",
                         transition: "all 0.25s"
                     }}>
-                        {props.name === "Today" ? todayTodos : trashTodos}
+                        {props.name === "Today" ? todayTodos : props.name === "Trash" ?
+                            trashTodos : upcomingTodos}
                     </span>
                 :
                 null

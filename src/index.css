@@ -4,6 +4,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   user-select: none;
+  overflow: hidden;
 }
 
 .background {
@@ -529,7 +530,115 @@ h1>span {
   cursor: pointer;
 }
 
-/* -- calendar -- */
+/* -- upcoming -- */
+
+.upcoming-container {
+  display: flex;
+  height: calc(100% - 135px);
+  align-content: flex-start;
+  row-gap: 20px;
+  width: 100%;
+  flex-wrap: wrap;
+  padding-bottom: 15px;
+}
+
+.upcoming-container p {
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.upcoming-date {
+  font-weight: 100 !important;
+  margin: 0;
+  font-size: 16px !important;
+}
+
+.upcoming-item-large {
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #EBEBEB;
+  width: 33%;
+  height: 40%;
+}
+
+.upcoming-item-small {
+  width: 24%;
+  height: 53%;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #EBEBEB;
+}
+
+.upcoming-todo {
+  margin: 15px 0 15px 15px;
+}
+
+.upcoming-todo a {
+  text-shadow: none;
+  transition: 0.25s all;
+  text-decoration: none;
+  color: #333;
+}
+
+.upcoming-todo a:hover {
+  text-shadow: 0 0 1px black;
+  cursor: pointer;
+}
+
+.upcoming-empty {
+  text-align: center;
+  margin-top: 20%;
+}
+
+.upcoming-item-small img {
+  margin-top: 10px;
+}
+
+.upcoming-empty-img {
+  width: 40px;
+  vertical-align: -13px;
+  margin-right: 10px;
+}
+
+/* -- task -- */
+
+.task-submit-container-outer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 140px;
+  width: 100%;
+}
+
+.task-submit-container {
+  display: flex;
+}
+
+.task-discard {
+  text-decoration: none;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #555 !important;
+  border-radius: 10px;
+  width: 45%;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.task-submit {
+  text-decoration: none;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #555 !important;
+  border-radius: 10px;
+  width: 45%;
+  padding: 10px 0;
+  text-align: center;
+}
 
 /* -- trash -- */
 
