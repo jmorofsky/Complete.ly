@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Outlet } from 'react-router-dom'
 import upcomingIcon from "../images/upcomingIcon.png"
 import todayIcon from "../images/todayIcon.png"
-import calendarIcon from "../images/calendarIcon.png"
 import trashIcon from "../images/trashIcon.png"
 import { Separator } from './Separator'
 import NewTag from './NewTag'
@@ -102,7 +101,6 @@ export default function MainLayout() {
                     <MenuNavItem name="Upcoming" img={upcomingIcon} />
                     <MenuNavItem name="Today" img={todayIcon} />
                     <MenuNavItem name="Trash" img={trashIcon} />
-                    <MenuNavItem name="Calendar" img={calendarIcon} />
 
                     <Separator />
 
@@ -127,4 +125,4 @@ export default function MainLayout() {
         </div>
     )
 }
-// todo: upcoming, calendar, make responsive
+// todo: make responsive, sample data date update

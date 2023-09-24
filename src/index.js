@@ -7,7 +7,6 @@ import MainLayout from "./components/MainLayout"
 import Main from "./pages/Main"
 import Trash from "./pages/Trash"
 import Upcoming from "./pages/Upcoming"
-import Calendar from "./pages/Calendar"
 import Error from "./pages/Error"
 import List from './pages/List'
 import Task from './pages/Task'
@@ -25,7 +24,6 @@ function App() {
             <Route index element={<Main />} />
             <Route path="trash" element={<Trash />} />
             <Route path="upcoming" element={<Upcoming />} />
-            <Route path="calendar" element={<Calendar />} />
 
             <Route path="lists" element={<></>} />
             <Route path="lists/:listName" element={<List />} />
