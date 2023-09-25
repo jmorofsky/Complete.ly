@@ -17,7 +17,7 @@ In a real-world scenario, whenever the user made any changes, the data would nee
 
 Still, all the behavior of the app is functional and works until the page is refreshed, upon which the data is reset back to default. React router allows us to navigate to different pages on the site without causing a refresh, letting us to hold onto any changes made by the user.
 
-The React hooks useContext and useEffect ensure that any changes made to the data, such as the creation of a new tag, are immediately reflected in all other parts of the application. This works because each part of the app are sharing the same single point of data: the "api call" made to retreive the sample data, which is then saved to context and shared with each component which needs access to the data.
+The React hooks useContext and useEffect ensure that any changes made to the data, such as the creation of a new tag, are immediately reflected in all other parts of the application. This works because each part of the app is sharing the same single point of data: the "api call" made to retreive the sample data, which is then saved to context and shared with each component which needs access to the data.
 
 ### Installation
 
